@@ -1,0 +1,950 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Vivero Maitenes | Plantas con raíces propias</title>
+  <meta name="description" content="Vivero Maitenes — árboles nativos, plantas ornamentales, forestales y frutales en Itahue, Molina, Región del Maule, Chile." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Literata:ital,opsz,wght@0,7..72,300..900;1,7..72,300..900&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --clr-bg: #fcf9f1;
+      --clr-surface-low: #f6f3eb;
+      --clr-surface-container: #f1eee6;
+      --clr-primary: #144227;
+      --clr-primary-container: #2d5a3d;
+      --clr-primary-fixed: #bceec8;
+      --clr-primary-fixed-dim: #a1d2ad;
+      --clr-on-primary: #ffffff;
+      --clr-secondary: #466729;
+      --clr-secondary-container: #c6efa1;
+      --clr-on-secondary-container: #4c6e2f;
+      --clr-tertiary: #602c00;
+      --clr-tertiary-container: #7e4111;
+      --clr-on-tertiary: #ffffff;
+      --clr-on-surface: #1c1c17;
+      --clr-on-surface-variant: #414942;
+      --clr-outline: #717971;
+      --clr-outline-variant: #c1c9c0;
+      --ff-h: 'Literata', Georgia, serif;
+      --ff-b: 'Inter', system-ui, sans-serif;
+      --sp-sm: 12px; --sp-md: 24px; --sp-lg: 48px; --sp-xl: 80px;
+      --r-sm: 4px; --r-md: 8px; --r-lg: 16px; --r-full: 9999px;
+      --shadow-sm: 0 2px 8px rgba(20,66,39,.07);
+      --shadow-md: 0 4px 20px rgba(20,66,39,.10);
+      --shadow-lg: 0 8px 40px rgba(20,66,39,.14);
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body { font-family: var(--ff-b); background: var(--clr-bg); color: var(--clr-on-surface); line-height: 1.6; -webkit-font-smoothing: antialiased; }
+    img { display: block; max-width: 100%; object-fit: cover; }
+    a { color: inherit; text-decoration: none; }
+    button { cursor: pointer; font-family: inherit; border: none; background: none; }
+
+    .container { max-width: 1200px; margin-inline: auto; padding-inline: 20px; }
+    @media (min-width: 768px) { .container { padding-inline: 56px; } }
+
+    .btn { display: inline-flex; align-items: center; gap: 8px; padding: 13px 26px; border-radius: var(--r-sm); font-size: 14px; font-weight: 600; letter-spacing: .04em; transition: transform .18s, box-shadow .18s, background .18s; }
+    .btn:hover { transform: translateY(-2px); }
+    .btn-primary { background: var(--clr-primary); color: #fff; box-shadow: var(--shadow-sm); }
+    .btn-primary:hover { background: var(--clr-primary-container); box-shadow: var(--shadow-md); }
+    .btn-outline { background: transparent; color: #fff; border: 1.5px solid rgba(255,255,255,.7); }
+    .btn-outline:hover { background: rgba(255,255,255,.15); }
+    .btn-cta { background: var(--clr-tertiary-container); color: #fff; padding: 9px 18px; font-size: 13px; border-radius: var(--r-sm); display: inline-flex; align-items: center; font-weight: 600; transition: background .18s, transform .18s; }
+    .btn-cta:hover { background: var(--clr-tertiary); transform: translateY(-1px); }
+
+    .tag { display: inline-flex; align-items: center; gap: 4px; padding: 4px 12px; border-radius: var(--r-full); font-size: 12px; font-weight: 600; background: rgba(70,103,41,.1); color: var(--clr-secondary); }
+
+    .s-label { font-size: 12px; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; color: var(--clr-secondary); margin-bottom: 10px; }
+    .s-title { font-family: var(--ff-h); font-size: clamp(26px, 3.5vw, 40px); font-weight: 700; line-height: 1.15; color: var(--clr-primary); margin-bottom: 16px; }
+    .s-body { font-size: 16px; color: var(--clr-on-surface-variant); line-height: 1.75; }
+
+    /* NAVBAR */
+    .navbar { position: fixed; top: 0; inset-inline: 0; z-index: 200; height: 84px; background: rgba(252,249,241,.93); backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px); border-bottom: 1px solid rgba(193,201,192,.28); transition: box-shadow .2s; }
+    .navbar.scrolled { box-shadow: var(--shadow-md); }
+    .navbar__inner { display: flex; align-items: center; justify-content: space-between; height: 100%; }
+    .navbar__brand { display: flex; align-items: center; gap: 10px; }
+    .navbar__logo { width: 40px; height: 40px; }
+    .navbar__name { font-family: var(--ff-h); font-size: 19px; font-weight: 700; color: var(--clr-primary); }
+    .navbar__links { display: none; gap: 28px; list-style: none; }
+    @media (min-width: 780px) { .navbar__links { display: flex; } }
+    .navbar__links a { font-size: 14px; font-weight: 500; color: var(--clr-on-surface-variant); transition: color .18s; position: relative; padding-bottom: 2px; }
+    .navbar__links a::after { content: ''; position: absolute; bottom: -2px; left: 0; right: 0; height: 2px; background: var(--clr-secondary); border-radius: 2px; transform: scaleX(0); transform-origin: left; transition: transform .2s; }
+    .navbar__links a:hover { color: var(--clr-primary); }
+    .navbar__links a:hover::after { transform: scaleX(1); }
+    .navbar__cta { display: none; }
+    @media (min-width: 780px) { .navbar__cta { display: inline-flex; } }
+    .hamburger { display: flex; flex-direction: column; gap: 5px; padding: 8px; }
+    .hamburger span { width: 22px; height: 2px; background: var(--clr-primary); border-radius: 2px; transition: all .22s; }
+    .hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+    .hamburger.open span:nth-child(2) { opacity: 0; }
+    .hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+    @media (min-width: 780px) { .hamburger { display: none; } }
+    .mobile-menu { display: none; position: fixed; inset: 84px 0 0 0; background: var(--clr-bg); z-index: 199; padding: var(--sp-md); flex-direction: column; }
+    .mobile-menu.open { display: flex; }
+    .mobile-menu a { font-size: 20px; font-weight: 500; color: var(--clr-on-surface); padding: 14px 0; border-bottom: 1px solid var(--clr-outline-variant); }
+
+    /* HERO */
+    .hero { position: relative; min-height: 100svh; display: flex; align-items: flex-end; padding-top: 68px; overflow: hidden; }
+    .hero__bg { position: absolute; inset: 0; }
+    .hero__bg img { width: 100%; height: 100%; object-fit: cover; object-position: center; }
+    .hero__overlay { position: absolute; inset: 0; background: linear-gradient(to top, rgba(4,14,6,.93) 0%, rgba(4,14,6,.65) 40%, rgba(4,14,6,.25) 70%, rgba(4,14,6,.05) 100%); }
+    .hero__content { position: relative; z-index: 2; padding-block: var(--sp-xl); color: #fff; max-width: 680px; }
+    .hero__badge { display: inline-flex; align-items: center; gap: 8px; padding: 6px 16px; border-radius: var(--r-full); background: rgba(10,30,10,.45); backdrop-filter: blur(10px); font-size: 13px; font-weight: 600; margin-bottom: 20px; border: 1px solid rgba(188,238,200,.5); text-shadow: 0 1px 4px rgba(0,0,0,.4); }
+    .hero__title { font-family: var(--ff-h); font-size: clamp(38px, 6.2vw, 72px); font-weight: 400; line-height: 1.08; letter-spacing: .025em; margin-bottom: 20px; text-shadow: 0 2px 24px rgba(0,0,0,.55), 0 1px 4px rgba(0,0,0,.4); }
+    .hero__title em { font-style: italic; font-weight: 400; color: var(--clr-primary-fixed); }
+
+    /* HERO TITLE — word slide-up */
+    .hw { display: inline-block; overflow: hidden; vertical-align: bottom; }
+    .hw > span { display: inline-block; transform: translateY(110%); opacity: 0; animation: hw-rise .95s cubic-bezier(.22,1,.36,1) forwards; }
+    @keyframes hw-rise { to { transform: translateY(0); opacity: 1; } }
+
+    /* HERO FALLING LEAVES */
+    .hero__leaves { position: absolute; inset: 0; pointer-events: none; overflow: hidden; z-index: 1; }
+    .hero__leaf { position: absolute; top: -32px; opacity: 0; }
+    .hero__leaf svg { display: block; }
+    @keyframes leaf-a {
+      0%   { transform: translateY(0)     rotate(0deg)   translateX(0);      opacity:0; }
+      6%   { opacity:.82; }
+      30%  { transform: translateY(30vh)  rotate(115deg) translateX(18px); }
+      60%  { transform: translateY(60vh)  rotate(235deg) translateX(-14px); }
+      85%  { opacity:.4; }
+      100% { transform: translateY(108vh) rotate(390deg) translateX(8px);    opacity:0; }
+    }
+    @keyframes leaf-b {
+      0%   { transform: translateY(0)     rotate(20deg)  translateX(0);      opacity:0; }
+      6%   { opacity:.75; }
+      25%  { transform: translateY(25vh)  rotate(105deg) translateX(-22px); }
+      55%  { transform: translateY(55vh)  rotate(225deg) translateX(28px); }
+      85%  { opacity:.35; }
+      100% { transform: translateY(108vh) rotate(405deg) translateX(-14px);  opacity:0; }
+    }
+    @keyframes leaf-c {
+      0%   { transform: translateY(0)     rotate(-15deg) translateX(0);      opacity:0; }
+      6%   { opacity:.7; }
+      35%  { transform: translateY(35vh)  rotate(85deg)  translateX(26px); }
+      65%  { transform: translateY(65vh)  rotate(205deg) translateX(-9px); }
+      85%  { opacity:.3; }
+      100% { transform: translateY(108vh) rotate(375deg) translateX(13px);   opacity:0; }
+    }
+    .hero__desc { font-size: 18px; line-height: 1.65; color: #fff; max-width: 520px; margin-bottom: 32px; text-shadow: 0 1px 8px rgba(0,0,0,.5); }
+    .hero__actions { display: flex; flex-wrap: wrap; gap: 12px; margin-bottom: var(--sp-lg); }
+    .hero__stats { display: flex; flex-wrap: wrap; gap: 32px; padding-top: 28px; border-top: 1px solid rgba(255,255,255,.18); }
+    .hero__stat strong { display: block; font-family: var(--ff-h); font-size: 30px; font-weight: 700; color: var(--clr-primary-fixed); }
+    .hero__stat span { font-size: 13px; color: rgba(255,255,255,.92); text-shadow: 0 1px 6px rgba(0,0,0,.45); }
+
+    /* ABOUT */
+    .about { padding-block: var(--sp-xl); background: var(--clr-surface-container); }
+    .about__grid { display: grid; gap: var(--sp-lg); align-items: center; }
+    @media (min-width: 900px) { .about__grid { grid-template-columns: 1fr 1fr; } }
+    .about__photos { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+    .about__photos img { border-radius: var(--r-md); aspect-ratio: 4/3; }
+    .about__photos img:first-child { grid-column: span 2; aspect-ratio: 16/9; }
+    .feature-list { list-style: none; display: flex; flex-direction: column; gap: 14px; margin-top: 20px; }
+    .feature-list li { display: flex; align-items: flex-start; gap: 12px; font-size: 15px; color: var(--clr-on-surface-variant); }
+    .fi { flex-shrink: 0; width: 28px; height: 28px; border-radius: 50%; background: var(--clr-primary-fixed); display: flex; align-items: center; justify-content: center; font-size: 14px; }
+
+    /* CATALOGUE */
+    .catalogue { padding-block: var(--sp-xl); }
+    .catalogue__hd { text-align: center; max-width: 580px; margin: 0 auto var(--sp-lg); }
+    .filters { display: flex; flex-wrap: wrap; gap: 10px; justify-content: center; margin-bottom: var(--sp-lg); }
+    .filter-btn { padding: 8px 20px; border-radius: var(--r-full); font-size: 13px; font-weight: 600; border: 1.5px solid var(--clr-outline-variant); color: var(--clr-on-surface-variant); transition: all .18s; }
+    .filter-btn.active, .filter-btn:hover { background: var(--clr-primary); color: #fff; border-color: var(--clr-primary); }
+    .product-grid { display: grid; gap: 20px; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); }
+    .pc { background: var(--clr-surface-low); border: 1px solid var(--clr-outline-variant); border-radius: var(--r-lg); overflow: hidden; transition: transform .22s, box-shadow .22s, border-color .22s; display: flex; flex-direction: column; }
+    .pc:hover { transform: translateY(-5px); box-shadow: var(--shadow-lg); border-color: var(--clr-primary-fixed-dim); }
+    .pc__img { aspect-ratio: 4/3; overflow: hidden; position: relative; background: var(--clr-surface-container); }
+    .pc__img img { width: 100%; height: 100%; transition: transform .45s; }
+    .pc:hover .pc__img img { transform: scale(1.07); }
+    .pc__badge { position: absolute; top: 10px; left: 10px; }
+    .pc__badge.tag {
+      background: rgba(6,16,8,.65) !important;
+      color: rgba(228,248,233,.95) !important;
+      backdrop-filter: blur(10px) saturate(150%);
+      -webkit-backdrop-filter: blur(10px) saturate(150%);
+      border: 1px solid rgba(255,255,255,.18) !important;
+      box-shadow: 0 2px 12px rgba(0,0,0,.32), inset 0 1px 0 rgba(255,255,255,.07);
+      font-weight: 700; letter-spacing: .05em;
+    }
+    .pc__body { padding: 20px; flex: 1; display: flex; flex-direction: column; gap: 8px; }
+    .pc__name { font-family: var(--ff-h); font-size: 20px; font-weight: 600; color: var(--clr-primary); }
+    .pc__foot { padding: 12px 20px 20px; display: flex; align-items: center; justify-content: space-between; border-top: 1px solid var(--clr-outline-variant); }
+    .pc__price { font-family: var(--ff-h); font-size: 17px; font-weight: 600; color: var(--clr-on-surface-variant); }
+
+    /* SERVICES */
+    .services { padding-block: var(--sp-xl); background: var(--clr-primary); color: #fff; position: relative; overflow: hidden; }
+    .services::after { content: ''; position: absolute; top: -120px; left: -120px; width: 480px; height: 480px; border-radius: 50%; background: rgba(188,238,200,.06); pointer-events: none; }
+    .services__hd { text-align: center; max-width: 580px; margin: 0 auto var(--sp-lg); }
+    .services__hd .s-label { color: var(--clr-primary-fixed-dim); }
+    .services__hd .s-title { color: #fff; }
+    .services__hd .s-body { color: rgba(255,255,255,.75); }
+    .srv-grid { display: grid; gap: 20px; grid-template-columns: repeat(3, 1fr); align-items: stretch; }
+    @media (max-width: 860px) { .srv-grid { grid-template-columns: repeat(2, 1fr); } }
+    @media (max-width: 540px) { .srv-grid { grid-template-columns: 1fr; } }
+
+    .srv {
+      position: relative; display: flex; flex-direction: column;
+      border-radius: 18px; padding: 36px 28px 28px; overflow: hidden; cursor: default; isolation: isolate;
+      background: linear-gradient(145deg, rgba(255,255,255,.08) 0%, rgba(255,255,255,.03) 100%);
+      border: 1px solid rgba(255,255,255,.09);
+      transition: transform .42s cubic-bezier(.22,1,.36,1), box-shadow .42s ease, border-color .42s ease;
+    }
+    .srv::before {
+      content: attr(data-num); position: absolute; bottom: -8px; right: 16px;
+      font-family: var(--ff-h); font-size: 104px; font-weight: 800; line-height: 1;
+      color: rgba(188,238,200,.05); pointer-events: none; user-select: none;
+      transition: color .42s ease, transform .42s ease;
+    }
+    .srv::after {
+      content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px;
+      background: linear-gradient(90deg, transparent, var(--clr-primary-fixed), transparent);
+      transform: scaleX(0); transform-origin: left; transition: transform .55s cubic-bezier(.22,1,.36,1);
+    }
+    .srv:hover {
+      transform: translateY(-11px);
+      border-color: rgba(188,238,200,.28);
+      box-shadow: 0 36px 72px rgba(0,0,0,.38), 0 0 0 1px rgba(188,238,200,.2), inset 0 1px 0 rgba(255,255,255,.12);
+    }
+    .srv:hover::before { color: rgba(188,238,200,.1); transform: translateY(-5px) scale(1.04); }
+    .srv:hover::after  { transform: scaleX(1); }
+
+    .srv__glow {
+      position: absolute; inset: 0; pointer-events: none;
+      background: radial-gradient(ellipse 70% 60% at 50% 0%, rgba(188,238,200,.13), transparent 70%);
+      opacity: 0; transition: opacity .5s ease;
+    }
+    .srv:hover .srv__glow { opacity: 1; }
+
+    .srv__top { display: flex; align-items: flex-start; justify-content: space-between; margin-bottom: 24px; }
+    .srv__ico-wrap { position: relative; width: 64px; height: 64px; flex-shrink: 0; }
+    .srv__ico {
+      width: 64px; height: 64px; border-radius: 14px; font-size: 28px;
+      display: flex; align-items: center; justify-content: center;
+      background: linear-gradient(145deg, rgba(188,238,200,.22), rgba(188,238,200,.06));
+      border: 1px solid rgba(188,238,200,.22);
+      box-shadow: 0 4px 16px rgba(0,0,0,.15), inset 0 1px 0 rgba(255,255,255,.1);
+      transition: transform .42s cubic-bezier(.22,1,.36,1), box-shadow .42s ease, background .42s ease;
+    }
+    .srv:hover .srv__ico {
+      transform: scale(1.12) rotate(-6deg);
+      box-shadow: 0 14px 32px rgba(0,0,0,.28), 0 0 24px rgba(188,238,200,.18), inset 0 1px 0 rgba(255,255,255,.14);
+      background: linear-gradient(145deg, rgba(188,238,200,.32), rgba(188,238,200,.12));
+    }
+    .srv__ico-ring {
+      position: absolute; inset: -6px; border-radius: 20px;
+      border: 1.5px solid rgba(188,238,200,.25);
+      opacity: 0; transform: scale(.82);
+      transition: opacity .4s ease, transform .42s cubic-bezier(.22,1,.36,1);
+    }
+    .srv:hover .srv__ico-ring { opacity: 1; transform: scale(1); }
+
+    .srv__num {
+      font-family: var(--ff-h); font-size: 11px; font-weight: 400; letter-spacing: .18em;
+      color: rgba(255,255,255,.2); padding: 5px 10px; border-radius: 20px;
+      border: 1px solid rgba(255,255,255,.08); background: rgba(255,255,255,.04);
+      transition: color .35s ease, border-color .35s ease, background .35s ease;
+    }
+    .srv:hover .srv__num { color: rgba(188,238,200,.75); border-color: rgba(188,238,200,.2); background: rgba(188,238,200,.07); }
+
+    .srv__t { font-family: var(--ff-h); font-size: 20px; font-weight: 700; color: #fff; margin-bottom: 10px; line-height: 1.25; }
+    .srv__d { font-size: 14px; color: rgba(255,255,255,.6); line-height: 1.72; flex: 1; }
+
+    .srv__foot {
+      display: flex; align-items: center; justify-content: space-between;
+      margin-top: 24px; padding-top: 16px; border-top: 1px solid rgba(255,255,255,.08);
+    }
+    .srv__tag { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: .1em; color: var(--clr-primary-fixed); opacity: .65; transition: opacity .35s; }
+    .srv:hover .srv__tag { opacity: 1; }
+    .srv__arr {
+      width: 32px; height: 32px; border-radius: 50%;
+      display: flex; align-items: center; justify-content: center; font-size: 14px;
+      color: var(--clr-primary-fixed); border: 1px solid rgba(188,238,200,.18);
+      background: rgba(188,238,200,.06); opacity: 0; transform: translateX(-8px) scale(.8);
+      transition: opacity .35s ease, transform .35s cubic-bezier(.22,1,.36,1), background .35s ease;
+    }
+    .srv:hover .srv__arr { opacity: 1; transform: translateX(0) scale(1); background: rgba(188,238,200,.14); }
+
+    .srv__bar {
+      position: absolute; bottom: 0; left: 0; height: 3px; width: 0%;
+      background: linear-gradient(90deg, var(--clr-primary-fixed), rgba(188,238,200,.4));
+      border-radius: 0 3px 3px 0; transition: width .55s cubic-bezier(.22,1,.36,1);
+    }
+    .srv:hover .srv__bar { width: 100%; }
+
+    /* GALLERY */
+    .gallery { padding-block: var(--sp-xl); background: var(--clr-surface-container); }
+    .gallery__hd { text-align: center; max-width: 580px; margin: 0 auto var(--sp-lg); }
+    .gal-grid { display: grid; gap: 10px; grid-template-columns: repeat(2, 1fr); }
+    @media (min-width: 600px) { .gal-grid { grid-template-columns: repeat(3, 1fr); } }
+    @media (min-width: 960px) { .gal-grid { grid-template-columns: repeat(4, 1fr); } }
+    .gal-item { border-radius: var(--r-md); overflow: hidden; aspect-ratio: 1; position: relative; cursor: pointer; }
+    .gal-item img { width: 100%; height: 100%; transition: transform .4s; }
+    .gal-item:hover img { transform: scale(1.08); }
+    .gal-item__ov { position: absolute; inset: 0; background: rgba(20,66,39,.48); opacity: 0; transition: opacity .25s; display: flex; align-items: flex-end; padding: 14px; }
+    .gal-item:hover .gal-item__ov { opacity: 1; }
+    .gal-item__label { font-size: 13px; font-weight: 600; color: #fff; }
+
+    /* TESTIMONIALS */
+    .testimonials { padding-block: var(--sp-xl); }
+    .test-grid { display: grid; gap: 20px; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); }
+    .tc { background: var(--clr-surface-low); border: 1px solid var(--clr-outline-variant); border-radius: var(--r-lg); padding: var(--sp-md); display: flex; flex-direction: column; gap: 16px; transition: box-shadow .2s, transform .2s; }
+    .tc:hover { box-shadow: var(--shadow-md); transform: translateY(-3px); }
+    .tc__stars { color: #e6a817; font-size: 17px; letter-spacing: 2px; }
+    .tc__text { font-style: italic; font-size: 15px; color: var(--clr-on-surface-variant); line-height: 1.7; flex: 1; }
+    .tc__author { display: flex; align-items: center; gap: 12px; }
+    .tc__av { width: 44px; height: 44px; border-radius: 50%; background: var(--clr-primary-fixed); display: flex; align-items: center; justify-content: center; font-family: var(--ff-h); font-size: 17px; font-weight: 700; color: var(--clr-primary); flex-shrink: 0; }
+    .tc__name { font-weight: 600; font-size: 15px; }
+    .tc__role { font-size: 13px; color: var(--clr-outline); }
+
+    /* CONTACT */
+    .contact { padding-block: var(--sp-xl); background: var(--clr-surface-container); }
+    .contact__grid { display: grid; gap: var(--sp-lg); }
+    @media (min-width: 900px) { .contact__grid { grid-template-columns: 1fr 1fr; align-items: start; } }
+    .ci { display: flex; flex-direction: column; gap: 20px; }
+    .ci-item { display: flex; align-items: flex-start; gap: 14px; }
+    .ci-ico { width: 44px; height: 44px; border-radius: var(--r-md); background: var(--clr-primary-fixed); display: flex; align-items: center; justify-content: center; font-size: 20px; flex-shrink: 0; }
+    .ci-lbl { font-size: 12px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: var(--clr-secondary); margin-bottom: 4px; }
+    .ci-val { font-size: 15px; color: var(--clr-on-surface-variant); }
+    .cform { display: flex; flex-direction: column; gap: 18px; }
+    .fg { display: flex; flex-direction: column; gap: 6px; }
+    .fl { font-size: 13px; font-weight: 600; color: var(--clr-on-surface-variant); }
+    .fi2, .ft2, .fs2 { font-family: var(--ff-b); font-size: 15px; padding: 12px 14px; background: var(--clr-bg); border: 1.5px solid var(--clr-outline-variant); border-radius: var(--r-sm); color: var(--clr-on-surface); transition: border-color .18s, box-shadow .18s; outline: none; width: 100%; }
+    .fi2:focus, .ft2:focus, .fs2:focus { border-color: var(--clr-primary); box-shadow: 0 0 0 3px rgba(20,66,39,.09); }
+    .ft2 { resize: vertical; min-height: 130px; }
+    .frow { display: grid; gap: 18px; }
+    @media (min-width: 480px) { .frow { grid-template-columns: 1fr 1fr; } }
+
+    /* FOOTER */
+    .footer { background: var(--clr-primary); color: rgba(255,255,255,.8); padding-block: var(--sp-lg); }
+    .footer__top { display: grid; gap: var(--sp-lg); padding-bottom: var(--sp-lg); border-bottom: 1px solid rgba(255,255,255,.11); }
+    @media (min-width: 640px) { .footer__top { grid-template-columns: 2fr 1fr 1fr; } }
+    .footer__brand { font-family: var(--ff-h); font-size: 22px; font-weight: 700; color: #fff; margin-bottom: 10px; }
+    .footer__desc { font-size: 14px; line-height: 1.65; color: rgba(255,255,255,.65); margin-bottom: 20px; }
+    .footer__social { display: flex; gap: 10px; }
+    .footer__slink { width: 36px; height: 36px; border-radius: 50%; background: rgba(255,255,255,.11); display: flex; align-items: center; justify-content: center; color: #fff; transition: background .18s, transform .18s; font-size: 16px; }
+    .footer__slink:hover { background: rgba(255,255,255,.24); transform: translateY(-2px); }
+    .footer__ct { font-size: 13px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: var(--clr-primary-fixed-dim); margin-bottom: 18px; }
+    .footer__links { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+    .footer__links a, .footer__links span { font-size: 14px; color: rgba(255,255,255,.65); transition: color .18s; }
+    .footer__links a:hover { color: #fff; }
+    .footer__bot { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 10px; padding-top: var(--sp-md); font-size: 13px; color: rgba(255,255,255,.4); }
+
+    /* WA FAB */
+    .wa-fab { position: fixed; bottom: 28px; right: 24px; z-index: 300; width: 58px; height: 58px; border-radius: 50%; background: #25d366; display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 20px rgba(37,211,102,.45); transition: transform .22s, box-shadow .22s; }
+    .wa-fab:hover { transform: scale(1.1) translateY(-2px); box-shadow: 0 8px 30px rgba(37,211,102,.6); }
+    .wa-fab svg { width: 30px; height: 30px; fill: #fff; }
+
+    /* LIGHTBOX */
+    .lb { display: none; position: fixed; inset: 0; z-index: 500; background: rgba(0,0,0,.9); align-items: center; justify-content: center; padding: 20px; }
+    .lb.open { display: flex; }
+    .lb img { max-width: 90vw; max-height: 90vh; border-radius: var(--r-md); box-shadow: 0 20px 60px rgba(0,0,0,.5); object-fit: contain; }
+    .lb__close { position: absolute; top: 20px; right: 24px; font-size: 32px; color: #fff; cursor: pointer; line-height: 1; background: rgba(255,255,255,.1); width: 44px; height: 44px; border-radius: 50%; display: flex; align-items: center; justify-content: center; transition: background .18s; }
+    .lb__close:hover { background: rgba(255,255,255,.2); }
+
+    @keyframes fadeUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
+    @media (max-width: 767px) { .navbar__brand img { height: 60px; } }
+
+    /* MARQUEE */
+    .marquee-wrapper { overflow: hidden; display: flex; flex-direction: column; gap: 24px; }
+    .marquee-row { overflow: hidden; cursor: grab; }
+    .marquee-row:active { cursor: grabbing; }
+    .marquee-inner { display: flex; gap: 20px; width: max-content; }
+    .marquee-inner .pc { flex-shrink: 0; width: 280px; }
+    .row-left  .marquee-inner { animation: marquee-left  55s linear infinite; }
+    .row-right .marquee-inner { animation: marquee-right 55s linear infinite; }
+    .marquee-wrapper:hover .marquee-inner { animation-play-state: paused; }
+    @keyframes marquee-left  { 0% { transform: translateX(0);    } 100% { transform: translateX(-50%); } }
+    @keyframes marquee-right { 0% { transform: translateX(-50%); } 100% { transform: translateX(0);    } }
+  </style>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "LocalBusiness",
+    "name": "Vivero Maitenes",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "Itahue",
+      "addressLocality": "Molina",
+      "addressRegion": "Maule",
+      "addressCountry": "CL"
+    }
+  }
+  </script>
+</head>
+<body>
+
+<!-- NAVBAR -->
+<nav class="navbar" id="navbar">
+  <div class="container navbar__inner">
+    <a href="#inicio" class="navbar__brand">
+      <img src="logo1.png" alt="Logo Vivero Los Maitenes" style="height:74px;width:auto;">
+    </a>
+    <ul class="navbar__links">
+      <li><a href="#inicio">Inicio</a></li>
+      <li><a href="#nosotros">Nosotros</a></li>
+      <li><a href="#catalogo">Catálogo</a></li>
+      <li><a href="#servicios">Servicios</a></li>
+      <li><a href="#galeria">Galería</a></li>
+      <li><a href="#contacto">Contacto</a></li>
+    </ul>
+    <a href="#contacto" class="btn btn-primary navbar__cta">Contáctanos</a>
+    <button class="hamburger" id="hBtn" aria-label="Menú">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+<div class="mobile-menu" id="mobMenu">
+  <a href="#inicio"    onclick="closeMob()">Inicio</a>
+  <a href="#nosotros"  onclick="closeMob()">Nosotros</a>
+  <a href="#catalogo"  onclick="closeMob()">Catálogo</a>
+  <a href="#servicios" onclick="closeMob()">Servicios</a>
+  <a href="#galeria"   onclick="closeMob()">Galería</a>
+  <a href="#contacto"  onclick="closeMob()">Contacto</a>
+</div>
+
+<!-- HERO -->
+<section id="inicio" class="hero">
+  <div class="hero__bg">
+    <img src="imagenes del lugar/WhatsApp Image 2026-06-26 at 12.59.02 (1).jpeg" alt="Vista aérea del Vivero Maitenes" />
+  </div>
+  <div class="hero__overlay"></div>
+  <div class="container">
+    <div class="hero__content">
+      <h1 class="hero__title"><span class="hw"><span style="animation-delay:.4s">Donde&nbsp;</span></span><span class="hw"><span style="animation-delay:.58s">cada&nbsp;</span></span><span class="hw"><span style="animation-delay:.76s">planta</span></span><br><em><span class="hw"><span style="animation-delay:1.02s">tiene&nbsp;</span></span><span class="hw"><span style="animation-delay:1.24s">historia</span></span></em></h1>
+      <p class="hero__desc">Árboles nativos, plantas ornamentales, forestales y frutales. Disponibles en diferentes tamaños y precios según tu proyecto o jardín.</p>
+      <div class="hero__actions">
+        <a href="#catalogo" class="btn btn-primary">Ver catálogo</a>
+        <a href="#contacto" class="btn btn-outline">Consultar disponibilidad</a>
+      </div>
+      <div class="hero__stats">
+        <div class="hero__stat"><strong>+500</strong><span>Especies disponibles</span></div>
+        <div class="hero__stat"><strong>30+</strong><span>Años de experiencia</span></div>
+        <div class="hero__stat"><strong>100%</strong><span>Producción propia</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="nosotros" class="about">
+  <div class="container">
+    <div class="about__grid">
+      <div class="about__photos">
+        <img src="imagenes del lugar/WhatsApp Image 2026-06-26 at 12.59.01 (1).jpeg" alt="Interior del vivero" />
+        <img src="imagenes del lugar/WhatsApp Image 2026-06-26 at 12.59.00.jpeg" alt="Plantas del vivero" />
+        <img src="imagenes del lugar/WhatsApp Image 2026-06-26 at 12.59.02.jpeg" alt="Vivero Maitenes" />
+      </div>
+      <div>
+        <p class="s-label">Nuestra historia</p>
+        <h2 class="s-title">Cultivando belleza con raíces en el centro sur de Chile</h2>
+        <p class="s-body">Vivero Maitenes es un proyecto familiar con décadas de trayectoria. Árboles nativos, plantas ornamentales, forestales y frutales. Disponibles en diferentes tamaños y precios según tu proyecto o jardín.</p>
+        <p class="s-body" style="margin-top:10px">Trabajamos con compromiso ambiental, fomentando el uso de especies locales que apoyan la biodiversidad y se adaptan naturalmente al territorio.</p>
+        <ul class="feature-list">
+          <li><span class="fi">🌱</span>Producción 100% artesanal en invernaderos propios</li>
+          <li><span class="fi">🌿</span>Más de 500 especies con énfasis en flora nativa</li>
+          <li><span class="fi">🤝</span>Asesoría personalizada para paisajismo</li>
+          <li><span class="fi">🚚</span>Despacho a domicilio en toda la región</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CATALOGUE -->
+<section id="catalogo" class="catalogue">
+  <div class="container">
+    <div class="catalogue__hd">
+      <p class="s-label">Nuestro catálogo</p>
+      <h2 class="s-title">Plantas para cada rincón</h2>
+      <p class="s-body">Cada espécimen seleccionado con criterios de calidad, rusticidad y belleza.</p>
+      <p class="s-body" style="margin-top:8px">Contamos con plantas en diferentes tamaños y precios — consulta disponibilidad por WhatsApp</p>
+    </div>
+    <div class="marquee-wrapper">
+
+      <!-- FILA 1: desliza hacia la izquierda -->
+      <div class="marquee-row row-left">
+        <div class="marquee-inner">
+          <article class="pc"><div class="pc__img"><img src="plantines de quillay.jpeg" alt="Quillay" loading="lazy"/><span class="pc__badge tag">Nativa</span></div><div class="pc__body"><h3 class="pc__name">Quillay</h3><p style="font-style:italic;font-size:13px;color:var(--clr-outline)">Quillaja saponaria</p><p style="font-size:14px;color:var(--clr-on-surface-variant);margin-top:6px">Árbol nativo siempreverde de gran valor ecológico.</p><div style="display:flex;flex-wrap:wrap;gap:5px;margin-top:8px"><span class="tag">☀️ Sol pleno</span><span class="tag">💧 Bajo riego</span></div></div><div class="pc__foot"><div class="pc__price">Consultar precio</div><a href="https://wa.me/56996997848?text=Hola%20equipo%20de%20Vivero%20Los%20Maitenes%2C%20quisiera%20consultar%20disponibilidad%2C%20tama%C3%B1os%20y%20precios%20de%20Quillay.%20Quedo%20a%20la%20espera%2C%20saludos." target="_blank" class="btn-cta">Pedir</a></div></article>
+          <article class="pc"><div class="pc__img"><img src="Peumo en bolsa diferente tamaño.jpeg" alt="Peumo" loading="lazy"/><span class="pc__badge tag">Nativa</span></div><div class="pc__body"><h3 class="pc__name">Peumo</h3><p style="font-style:italic;font-size:13px;color:var(--clr-outline)">Cryptocarya alba</p><p style="font-size:14px;color:var(--clr-on-surface-variant);margin-top:6px">Árbol nativo siempreverde con frutos rojos en otoño.</p><div style="display:flex;flex-wrap:wrap;gap:5px;margin-top:8px"><span class="tag">🌤 Sol / Sombra</span><span class="tag">Nativa</span></div></div><div class="pc__foot"><div class="pc__price">Bolsa chica / grande</div><a href="https://wa.me/56996997848?text=Hola%20equipo%20de%20Vivero%20Los%20Maitenes%2C%20quisiera%20consultar%20disponibilidad%2C%20tama%C3%B1os%20y%20precios%20de%20Peumo.%20Quedo%20a%20la%20espera%2C%20saludos." target="_blank" class="btn-cta">Pedir</a></div></article>
+          <article class="pc"><div class="pc__img"><img src="Boldo en bolsa diferente tamaño.jpeg" alt="Boldo" loading="lazy"/><span class="pc__badge tag">Nativa</span></div><div class="pc__body"><h3 class="pc__name">Boldo</h3><p style="font-style:italic;font-size:13px;color:var(--clr-outline)">Peumus boldus</p><p style="font-size:14px;color:var(--clr-on-surface-variant);margin-top:6px">Árbol nativo medicinal de hojas aromáticas.</p><div style="display:flex;flex-wrap:wrap;gap:5px;margin-top:8px"><span class="tag">☀️ Sol pleno</span><span class="tag">💧 Bajo riego</span></div></div><div class="pc__foot"><div class="pc__price">Bolsa chica / grande</div><a href="https://wa.me/56996997848?text=Hola%20equipo%20de%20Vivero%20Los%20Maitenes%2C%20quisiera%20consultar%20disponibilidad%2C%20tama%C3%B1os%20y%20precios%20de%20Boldo.%20Quedo%20a%20la%20espera%2C%20saludos." target="_blank" class="btn-cta">Pedir</a></div></article>
+          <article class="pc"><div class="pc__img"><img src="Calle calle.jpeg" alt="Calle calle" loading="lazy"/><span class="pc__badge tag">Nativa</span></div><div class="pc__body"><h3 class="pc__name">Calle calle</h3><p style="font-style:italic;font-size:13px;color:var(--clr-outline)">Libertia sessiliflora</p><p style="font-size:14px;color:var(--clr-on-surface-variant);margin-top:6px">Herbácea nativa con flores blancas. Resistente a humedad.</p><div style="display:flex;flex-wrap:wrap;gap:5px;margin-top:8px"><span class="tag">🌤 Semi sombra</span><span class="tag">Nativa</span></div></div><div class="pc__foot"><div class="pc__price">Consultar precio</div><a href="https://wa.me/56996997848?text=Hola%20equipo%20de%20Vivero%20Los%20Maitenes%2C%20quisiera%20consultar%20disponibilidad%2C%20tama%C3%B1os%20y%20precios%20de%20Calle%20calle.%20Quedo%20a%20la%20espera%2C%20saludos." target="_blank" class="btn-cta">Pedir</a></div></article>
+          <article class="pc"><div class="pc__img"><img src="Agapantos.jpeg" alt="Agapantos" loading="lazy"/><span class="pc__badge tag" style="background:rgba(255,180,131,.2);color:#602c00">Ornamental</span></div><div class="pc__body"><h3 class="pc__name">Agapanto</h3><p style="font-style:italic;font-size:13px;color:var(--clr-outline)">Agapanthus africanus</p><p style="font-size:14px;color:var(--clr-on-surface-variant);margin-top:6px">Flores azules y violetas espectaculares en verano.</p><div style="display:flex;flex-wrap:wrap;gap:5px;margin-top:8px"><span class="tag">☀️ Sol pleno</span><span class="tag">🌸 Verano</span></div></div><div class="pc__foot"><div class="pc__price">Consultar precio</div><a href="https://wa.me/56996997848?text=Hola%20equipo%20de%20Vivero%20Los%20Maitenes%2C%20quisiera%20consultar%20disponibilidad%2C%20tama%C3%B1os%20y%20precios%20de%20Agapanto.%20Quedo%20a%20la%20espera%2C%20saludos." target="_blank" class="btn-cta">Pedir</a></div></article>
+          <article class="pc"><div class="pc__img"><img src="Crespones diferentes tamaños y colores.jpeg" alt="Crespones" loading="lazy"/><span class="pc__badge tag" style="background:rgba(255,180,131,.2);color:#602c00">Ornamental</span></div><div class="pc__body"><h3 class="pc__name">Crespón</h3><p style="font-style:italic;font-size:13px;color:var(--clr-outline)">Lagerstroemia indica</p><p style="font-size:14px;color:var(--clr-on-surface-variant);margin-top:6px">Floración espléndida en colores rosa, rojo y blanco.</p><div style="display:flex;flex-wrap:wrap;gap:5px;margin-top:8px"><span class="tag">☀️ Sol pleno</span><span class="tag">🌸 Verano</span></div></div><div class="pc__foot"><div class="pc__price">Varios tamaños</div><a href="https://wa.me/56996997848?text=Hola%20equipo%20de%20Vivero%20Los%20Maitenes%2C%20quisiera%20consultar%20disponibilidad%2C%20tama%C3%B1os%20y%20precios%20de%20Cresp%C3%B3n.%20Quedo%20a%20la%20espera%2C%20saludos." target="_blank" class="btn-cta">Pedir</a></div></article>
+          <article class="pc"><div class="pc__img"><img src="Dracenas rojas y verdes.jpeg" alt="Dracenas" loading="lazy"/><span class="pc__badge tag" style="background:rgba(255,180,131,.2);color:#602c00">Ornamental</span></div><div class="pc__body"><h3 class="pc__name">Dracena</h3><p style="font-style:italic;font-size:13px;color:var(--clr-outline)">Dracaena draco</p><p style="font-size:14px;color:var(--clr-on-surface-variant);margin-top:6px">Planta tropical decorativa en variante roja y verde.</p><div style="display:flex;flex-wrap:wrap;gap:5px;margin-top:8px"><span class="tag">🌤 Semi sombra</span><span class="tag">Interior / Exterior</span></div></div><div class="pc__foot"><div class="pc__price">Roja / Verde</div><a href="https://wa.me/56996997848?text=Hola%20equipo%20de%20Vivero%20Los%20Maitenes%2C%20quisiera%20consultar%20disponibilidad%2C%20tama%C3%B1os%20y%20precios%20de%20Dracena.%20Quedo%20a%20la%20espera%2C%20saludos." target="_blank" class="btn-cta">Pedir</a></div></article>
+          <article class="pc"><div class="pc__img"><img src="Eucaliptos.jpeg" alt="Eucaliptos" loading="lazy"/><span class="pc__badge tag" style="background:rgba(188,238,200,.25);color:#144227">Árbol</span></div><div class="pc__body"><h3 class="pc__name">Eucalipto</h3><p style="font-style:italic;font-size:13px;color:var(--clr-outline)">Eucalyptus globulus</p><p style="font-size:14px;color:var(--clr-on-surface-variant);margin-top:6px">Árbol de crecimiento rápido para cortinas y reforestación.</p><div style="display:flex;flex-wrap:wrap;gap:5px;margin-top:8px"><span class="tag">☀️ Sol pleno</span><span class="tag">Crecimiento rápido</span></div></div><div class="pc__foot"><div class="pc__price">Consultar precio</div><a href="https://wa.me/56996997848?text=Hola%20equipo%20de%20Vivero%20Los%20Maitenes%2C%20quisiera%20consultar%20disponibilidad%2C%20tama%C3%B1os%20y%20precios%20de%20Eucalipto.%20Quedo%20a%20la%20espera%2C%20saludos." target="_blank" class="btn-cta">Pedir</a></div></article>
+          <article class="pc"><div class="pc__img"><img src="Fotinias.jpeg" alt="Fotinias" loading="lazy"/><span class="pc__badge tag" style="background:rgba(198,239,161,.25);color:#466729">Arbusto</span></div><div class="pc__body"><h3 class="pc__name">Fotinia</h3><p style="font-style:italic;font-size:13px;color:var(--clr-outline)">Photinia × fraseri</p><p style="font-size:14px;color:var(--clr-on-surface-variant);margin-top:6px">Follaje rojo en brotes nuevos. Ideal para cercos vivos.</p><div style="display:flex;flex-wrap:wrap;gap:5px;margin-top:8px"><span class="tag">☀️ Sol pleno</span><span class="tag">Cercos vivos</span></div></div><div class="pc__foot"><div class="pc__price">Consultar precio</div><a href="https://wa.me/56996997848?text=Hola%20equipo%20de%20Vivero%20Los%20Maitenes%2C%20quisiera%20consultar%20disponibilidad%2C%20tama%C3%B1os%20y%20precios%20de%20Fotinia.%20Quedo%20a%20la%20espera%2C%20saludos." target="_blank" class="btn-cta">Pedir</a></div></article>
+          <article class="pc"><div class="pc__img"><img src="Helechos.jpeg" alt="Helechos" loading="lazy"/><span class="pc__badge tag" style="background:rgba(255,180,131,.2);color:#602c00">Ornamental</span></div><div class="pc__body"><h3 class="pc__name">Helecho</h3><p style="font-style:italic;font-size:13px;color:var(--clr-outline)">Pteridium aquilinum</p><p style="font-size:14px;color:var(--clr-on-surface-variant);margin-top:6px">Perfecta para rincones húmedos y jardines estilo silvestre.</p><div style="display:flex;flex-wrap:wrap;gap:5px;margin-top:8px"><span class="tag">🌑 Sombra</span><span class="tag">💧 Humedad</span></div></div><div class="pc__foot"><div class="pc__price">Consultar precio</div><a href="https://wa.me/56996997848?text=Hola%20equipo%20de%20Vivero%20Los%20Maitenes%2C%20quisiera%20consultar%20disponibilidad%2C%20tama%C3%B1os%20y%20precios%20de%20Helecho.%20Quedo%20a%20la%20espera%2C%20saludos." target="_blank" class="btn-cta">Pedir</a></div></article>
+          <article class="pc"><div class="pc__img"><img src="Laurentinas diferentes tamaños.jpeg" alt="Laurentinas" loading="lazy"/><span class="pc__badge tag" style="background:rgba(198,239,161,.25);color:#466729">Arbusto</span></div><div class="pc__body"><h3 class="pc__name">Laurentina</h3><p style="font-style:italic;font-size:13px;color:var(--clr-outline)">Viburnum tinus</p><p style="font-size:14px;color:var(--clr-on-surface-variant);margin-top:6px">Arbusto siempreverde versátil para setos y cercos vivos.</p><div style="display:flex;flex-wrap:wrap;gap:5px;margin-top:8px"><span class="tag">🌤 Sol / Semi</span><span class="tag">Varios tamaños</span></div></div><div class="pc__foot"><div class="pc__price">Varios tamaños</div><a href="https://wa.me/56996997848?text=Hola%20equipo%20de%20Vivero%20Los%20Maitenes%2C%20quisiera%20consultar%20disponibilidad%2C%20tama%C3%B1os%20y%20precios%20de%20Laurentina.%20Quedo%20a%20la%20espera%2C%20saludos." target="_blank" class="btn-cta">Pedir</a></div></article>
+          <!-- duplicado para loop infinito -->
+          <article class="pc" aria-hidden="true"><div class="pc__img"><img src="plantines de quillay.jpeg" alt="" loading="lazy"/><span class="pc__badge tag">Nativa</span></div><div class="pc__body"><h3 class="pc__name">Quillay</h3><p style="font-style:italic;font-size:13px;color:var(--clr-outline)">Quillaja saponaria</p><p style="font-size:14px;color:var(--clr-on-surface-variant);margin-top:6px">Árbol nativo siempreverde de gran valor ecológico.</p><div style="display:flex;flex-wrap:wrap;gap:5px;margin-top:8px"><span class="tag">☀️ Sol pleno</span><span class="tag">💧 Bajo riego</span></div></div><div class="pc__foot"><div class="pc__price">Consultar precio</div><a href="https://wa.me/56996997848?text=Hola%20equipo%20de%20Vivero%20Los%20Maitenes%2C%20quisiera%20consultar%20disponibilidad%2C%20tama%C3%B1os%20y%20precios%20de%20Quillay.%20Quedo%20a%20la%20espera%2C%20saludos." target="_blank" class="btn-cta">Pedir</a></div></article>
+          <article class="pc" aria-hidden="true"><div class="pc__img"><img src="Peumo en bolsa diferente tamaño.jpeg" alt="" loading="lazy"/><span class="pc__badge tag">Nativa</span></div><div class="pc__body"><h3 class="pc__name">Peumo</h3><p style="font-style:italic;font-size:13px;color:var(--clr-outline)">Cryptocarya alba</p><p style="font-size:14px;color:var(--clr-on-surface-variant);margin-top:6px">Árbol nativo siempreverde con frutos rojos en otoño.</p><div style="display:flex;flex-wrap:wrap;gap:5px;margin-top:8px"><span class="tag">🌤 Sol / Sombra</span><span class="tag">Nativa</span></div></div><div class="pc__foot"><div class="pc__price">Bolsa chica / grande</div><a href="https://wa.me/56996997848?text=Hola%20equipo%20de%20Vivero%20Los%20Maitenes%2C%20quisiera%20consultar%20disponibilidad%2C%20tama%C3%B1os%20y%20precios%20de%20Peumo.%20Quedo%20a%20la%20espera%2C%20saludos." target="_blank" class="btn-cta">Pedir</a></div></article>
+          <article class="pc" aria-hidden="true"><div class="pc__img"><img src="Boldo en bolsa diferente tamaño.jpeg" alt="" loading="lazy"/><span class="pc__badge tag">Nativa</span></div><div class="pc__body"><h3 class="pc__name">Boldo</h3><p style="font-style:italic;font-size:13px;color:var(--clr-outline)">Peumus boldus</p><p style="font-size:14px;color:var(--clr-on-surface-variant);margin-top:6px">Árbol nativo medicinal de hojas aromáticas.</p><div style="display:flex;flex-wrap:wrap;gap:5px;margin-top:8px"><span class="tag">☀️ Sol pleno</span><span class="tag">💧 Bajo riego</span></div></div><div class="pc__foot"><div class="pc__price">Bolsa chica / grande</div><a href="https://wa.me/56996997848?text=Hola%20equipo%20de%20Vivero%20Los%20Maitenes%2C%20quisiera%20consultar%20disponibilidad%2C%20tama%C3%B1os%20y%20precios%20de%20Boldo.%20Quedo%20a%20la%20espera%2C%20saludos." target="_blank" class="btn-cta">Pedir</a></div></article>
+          <article class="pc" aria-hidden="true"><div class="pc__img"><img src="Calle calle.jpeg" alt="" loading="lazy"/><span class="pc__badge tag">Nativa</span></div><div class="pc__body"><h3 class="pc__name">Calle calle</h3><p style="font-style:italic;font-size:13px;color:var(--clr-outline)">Libertia sessiliflora</p><p style="font-size:14px;color:var(--clr-on-surface-variant);margin-top:6px">Herbácea nativa con flores blancas. Resistente a humedad.</p><div style="display:flex;flex-wrap:wrap;gap:5px;margin-top:8px"><span class="tag">🌤 Semi sombra</span><span class="tag">Nativa</span></div></div><div class="pc__foot"><div class="pc__price">Consultar precio</div><a href="https://wa.me/56996997848?text=Hola%20equipo%20de%20Vivero%20Los%20Maitenes%2C%20quisiera%20consultar%20disponibilidad%2C%20tama%C3%B1os%20y%20precios%20de%20Calle%20calle.%20Quedo%20a%20la%20espera%2C%20saludos." target="_blank" class="btn-cta">Pedir</a></div></article>
+          <article class="pc" aria-hidden="true"><div class="pc__img"><img src="Agapantos.jpeg" alt="" loading="lazy"/><span class="pc__badge tag" style="background:rgba(255,180,131,.2);color:#602c00">Ornamental</span></div><div class="pc__body"><h3 class="pc__name">Agapanto</h3><p style="font-style:italic;font-size:13px;color:var(--clr-outline)">Agapanthus africanus</p><p style="font-size:14px;color:var(--clr-on-surface-variant);margin-top:6px">Flores azules y violetas espectaculares en verano.</p><div style="display:flex;flex-wrap:wrap;gap:5px;margin-top:8px"><span class="tag">☀️ Sol pleno</span><span class="tag">🌸 Verano</span></div></div><div class="pc__foot"><div class="pc__price">Consultar precio</div><a href="https://wa.me/56996997848?text=Hola%20equipo%20de%20Vivero%20Los%20Maitenes%2C%20quisiera%20consultar%20disponibilidad%2C%20tama%C3%B1os%20y%20precios%20de%20Agapanto.%20Quedo%20a%20la%20espera%2C%20saludos." target="_blank" class="btn-cta">Pedir</a></div></article>
+          <article class="pc" aria-hidden="true"><div class="pc__img"><img src="Crespones diferentes tamaños y colores.jpeg" alt="" loading="lazy"/><span class="pc__badge tag" style="background:rgba(255,180,131,.2);color:#602c00">Ornamental</span></div><div class="pc__body"><h3 class="pc__name">Crespón</h3><p style="font-style:italic;font-size:13px;color:var(--clr-outline)">Lagerstroemia indica</p><p style="font-size:14px;color:var(--clr-on-surface-variant);margin-top:6px">Floración espléndida en colores rosa, rojo y blanco.</p><div style="display:flex;flex-wrap:wrap;gap:5px;margin-top:8px"><span class="tag">☀️ Sol pleno</span><span class="tag">🌸 Verano</span></div></div><div class="pc__foot"><div class="pc__price">Varios tamaños</div><a href="https://wa.me/56996997848?text=Hola%20equipo%20de%20Vivero%20Los%20Maitenes%2C%20quisiera%20consultar%20disponibilidad%2C%20tama%C3%B1os%20y%20precios%20de%20Cresp%C3%B3n.%20Quedo%20a%20la%20espera%2C%20saludos." target="_blank" class="btn-cta">Pedir</a></div></article>
+          <article class="pc" aria-hidden="true"><div class="pc__img"><img src="Dracenas rojas y verdes.jpeg" alt="" loading="lazy"/><span class="pc__badge tag" style="background:rgba(255,180,131,.2);color:#602c00">Ornamental</span></div><div class="pc__body"><h3 class="pc__name">Dracena</h3><p style="font-style:italic;font-size:13px;color:var(--clr-outline)">Dracaena draco</p><p style="font-size:14px;color:var(--clr-on-surface-variant);margin-top:6px">Planta tropical decorativa en variante roja y verde.</p><div style="display:flex;flex-wrap:wrap;gap:5px;margin-top:8px"><span class="tag">🌤 Semi sombra</span><span class="tag">Interior / Exterior</span></div></div><div class="pc__foot"><div class="pc__price">Roja / Verde</div><a href="https://wa.me/56996997848?text=Hola%20equipo%20de%20Vivero%20Los%20Maitenes%2C%20quisiera%20consultar%20disponibilidad%2C%20tama%C3%B1os%20y%20precios%20de%20Dracena.%20Quedo%20a%20la%20espera%2C%20saludos." target="_blank" class="btn-cta">Pedir</a></div></article>
+          <article class="pc" aria-hidden="true"><div class="pc__img"><img src="Eucaliptos.jpeg" alt="" loading="lazy"/><span class="pc__badge tag" style="background:rgba(188,238,200,.25);color:#144227">Árbol</span></div><div class="pc__body"><h3 class="pc__name">Eucalipto</h3><p style="font-style:italic;font-size:13px;color:var(--clr-outline)">Eucalyptus globulus</p><p style="font-size:14px;color:var(--clr-on-surface-variant);margin-top:6px">Árbol de crecimiento rápido para cortinas y reforestación.</p><div style="display:flex;flex-wrap:wrap;gap:5px;margin-top:8px"><span class="tag">☀️ Sol pleno</span><span class="tag">Crecimiento rápido</span></div></div><div class="pc__foot"><div class="pc__price">Consultar precio</div><a href="https://wa.me/56996997848?text=Hola%20equipo%20de%20Vivero%20Los%20Maitenes%2C%20quisiera%20consultar%20disponibilidad%2C%20tama%C3%B1os%20y%20precios%20de%20Eucalipto.%20Quedo%20a%20la%20espera%2C%20saludos." target="_blank" class="btn-cta">Pedir</a></div></article>
+          <article class="pc" aria-hidden="true"><div class="pc__img"><img src="Fotinias.jpeg" alt="" loading="lazy"/><span class="pc__badge tag" style="background:rgba(198,239,161,.25);color:#466729">Arbusto</span></div><div class="pc__body"><h3 class="pc__name">Fotinia</h3><p style="font-style:italic;font-size:13px;color:var(--clr-outline)">Photinia × fraseri</p><p style="font-size:14px;color:var(--clr-on-surface-variant);margin-top:6px">Follaje rojo en brotes nuevos. Ideal para cercos vivos.</p><div style="display:flex;flex-wrap:wrap;gap:5px;margin-top:8px"><span class="tag">☀️ Sol pleno</span><span class="tag">Cercos vivos</span></div></div><div class="pc__foot"><div class="pc__price">Consultar precio</div><a href="https://wa.me/56996997848?text=Hola%20equipo%20de%20Vivero%20Los%20Maitenes%2C%20quisiera%20consultar%20disponibilidad%2C%20tama%C3%B1os%20y%20precios%20de%20Fotinia.%20Quedo%20a%20la%20espera%2C%20saludos." target="_blank" class="btn-cta">Pedir</a></div></article>
+          <article class="pc" aria-hidden="true"><div class="pc__img"><img src="Helechos.jpeg" alt="" loading="lazy"/><span class="pc__badge tag" style="background:rgba(255,180,131,.2);color:#602c00">Ornamental</span></div><div class="pc__body"><h3 class="pc__name">Helecho</h3><p style="font-style:italic;font-size:13px;color:var(--clr-outline)">Pteridium aquilinum</p><p style="font-size:14px;color:var(--clr-on-surface-variant);margin-top:6px">Perfecta para rincones húmedos y jardines estilo silvestre.</p><div style="display:flex;flex-wrap:wrap;gap:5px;margin-top:8px"><span class="tag">🌑 Sombra</span><span class="tag">💧 Humedad</span></div></div><div class="pc__foot"><div class="pc__price">Consultar precio</div><a href="https://wa.me/56996997848?text=Hola%20equipo%20de%20Vivero%20Los%20Maitenes%2C%20quisiera%20consultar%20disponibilidad%2C%20tama%C3%B1os%20y%20precios%20de%20Helecho.%20Quedo%20a%20la%20espera%2C%20saludos." target="_blank" class="btn-cta">Pedir</a></div></article>
+          <article class="pc" aria-hidden="true"><div class="pc__img"><img src="Laurentinas diferentes tamaños.jpeg" alt="" loading="lazy"/><span class="pc__badge tag" style="background:rgba(198,239,161,.25);color:#466729">Arbusto</span></div><div class="pc__body"><h3 class="pc__name">Laurentina</h3><p style="font-style:italic;font-size:13px;color:var(--clr-outline)">Viburnum tinus</p><p style="font-size:14px;color:var(--clr-on-surface-variant);margin-top:6px">Arbusto siempreverde versátil para setos y cercos vivos.</p><div style="display:flex;flex-wrap:wrap;gap:5px;margin-top:8px"><span class="tag">🌤 Sol / Semi</span><span class="tag">Varios tamaños</span></div></div><div class="pc__foot"><div class="pc__price">Varios tamaños</div><a href="https://wa.me/56996997848?text=Hola%20equipo%20de%20Vivero%20Los%20Maitenes%2C%20quisiera%20consultar%20disponibilidad%2C%20tama%C3%B1os%20y%20precios%20de%20Laurentina.%20Quedo%20a%20la%20espera%2C%20saludos." target="_blank" class="btn-cta">Pedir</a></div></article>
+        </div>
+      </div>
+
+      <!-- FILA 2: desliza hacia la derecha -->
+      <div class="marquee-row row-right">
+        <div class="marquee-inner">
+          <article class="pc"><div class="pc__img"><img src="Palmeras.jpeg" alt="Palmeras" loading="lazy"/><span class="pc__badge tag" style="background:rgba(188,238,200,.25);color:#144227">Árbol</span></div><div class="pc__body"><h3 class="pc__name">Palmera</h3><p style="font-style:italic;font-size:13px;color:var(--clr-outline)">Trachycarpus fortunei</p><p style="font-size:14px;color:var(--clr-on-surface-variant);margin-top:6px">Palmera resistente al frío para cualquier jardín.</p><div style="display:flex;flex-wrap:wrap;gap:5px;margin-top:8px"><span class="tag">☀️ Sol pleno</span><span class="tag">Resistente frío</span></div></div><div class="pc__foot"><div class="pc__price">Consultar precio</div><a href="https://wa.me/56996997848?text=Hola%20equipo%20de%20Vivero%20Los%20Maitenes%2C%20quisiera%20consultar%20disponibilidad%2C%20tama%C3%B1os%20y%20precios%20de%20Palmera.%20Quedo%20a%20la%20espera%2C%20saludos." target="_blank" class="btn-cta">Pedir</a></div></article>
+          <article class="pc"><div class="pc__img"><img src="Pino azul.jpeg" alt="Pino azul" loading="lazy"/><span class="pc__badge tag" style="background:rgba(188,238,200,.25);color:#144227">Árbol</span></div><div class="pc__body"><h3 class="pc__name">Pino azul</h3><p style="font-style:italic;font-size:13px;color:var(--clr-outline)">Picea pungens glauca</p><p style="font-size:14px;color:var(--clr-on-surface-variant);margin-top:6px">Conífera de follaje azul plateado único. Elegante y lento.</p><div style="display:flex;flex-wrap:wrap;gap:5px;margin-top:8px"><span class="tag">☀️ Sol pleno</span><span class="tag">Ornamental</span></div></div><div class="pc__foot"><div class="pc__price">Consultar precio</div><a href="https://wa.me/56996997848?text=Hola%20equipo%20de%20Vivero%20Los%20Maitenes%2C%20quisiera%20consultar%20disponibilidad%2C%20tama%C3%B1os%20y%20precios%20de%20Pino%20azul.%20Quedo%20a%20la%20espera%2C%20saludos." target="_blank" class="btn-cta">Pedir</a></div></article>
+          <article class="pc"><div class="pc__img"><img src="Pitosporos nigricans.jpeg" alt="Pitosporo" loading="lazy"/><span class="pc__badge tag" style="background:rgba(198,239,161,.25);color:#466729">Arbusto</span></div><div class="pc__body"><h3 class="pc__name">Pitosporo nigricans</h3><p style="font-style:italic;font-size:13px;color:var(--clr-outline)">Pittosporum tenuifolium</p><p style="font-size:14px;color:var(--clr-on-surface-variant);margin-top:6px">Follaje oscuro muy usado en jardinería paisajista moderna.</p><div style="display:flex;flex-wrap:wrap;gap:5px;margin-top:8px"><span class="tag">☀️ Sol / Semi</span><span class="tag">Follaje ornamental</span></div></div><div class="pc__foot"><div class="pc__price">Consultar precio</div><a href="https://wa.me/56996997848?text=Hola%20equipo%20de%20Vivero%20Los%20Maitenes%2C%20quisiera%20consultar%20disponibilidad%2C%20tama%C3%B1os%20y%20precios%20de%20Pitosporo%20nigricans.%20Quedo%20a%20la%20espera%2C%20saludos." target="_blank" class="btn-cta">Pedir</a></div></article>
+          <article class="pc"><div class="pc__img"><img src="Plantines de liquidámbar.jpeg" alt="Liquidámbar" loading="lazy"/><span class="pc__badge tag" style="background:rgba(188,238,200,.25);color:#144227">Árbol</span></div><div class="pc__body"><h3 class="pc__name">Liquidámbar</h3><p style="font-style:italic;font-size:13px;color:var(--clr-outline)">Liquidambar styraciflua</p><p style="font-size:14px;color:var(--clr-on-surface-variant);margin-top:6px">Follaje multicolor en otoño: rojos, naranjas y amarillos.</p><div style="display:flex;flex-wrap:wrap;gap:5px;margin-top:8px"><span class="tag">☀️ Sol pleno</span><span class="tag">🍂 Otoño</span></div></div><div class="pc__foot"><div class="pc__price">Plantines</div><a href="https://wa.me/56996997848?text=Hola%20equipo%20de%20Vivero%20Los%20Maitenes%2C%20quisiera%20consultar%20disponibilidad%2C%20tama%C3%B1os%20y%20precios%20de%20Liquid%C3%A1mbar.%20Quedo%20a%20la%20espera%2C%20saludos." target="_blank" class="btn-cta">Pedir</a></div></article>
+          <article class="pc"><div class="pc__img"><img src="Plantines de laurel de flor.jpeg" alt="Laurel de flor" loading="lazy"/><span class="pc__badge tag" style="background:rgba(188,238,200,.25);color:#144227">Árbol</span></div><div class="pc__body"><h3 class="pc__name">Laurel de flor</h3><p style="font-style:italic;font-size:13px;color:var(--clr-outline)">Nerium oleander</p><p style="font-size:14px;color:var(--clr-on-surface-variant);margin-top:6px">Floración abundante en verano. Resistente y de rápido crecimiento.</p><div style="display:flex;flex-wrap:wrap;gap:5px;margin-top:8px"><span class="tag">☀️ Sol pleno</span><span class="tag">🌸 Primavera</span></div></div><div class="pc__foot"><div class="pc__price">Plantines</div><a href="https://wa.me/56996997848?text=Hola%20equipo%20de%20Vivero%20Los%20Maitenes%2C%20quisiera%20consultar%20disponibilidad%2C%20tama%C3%B1os%20y%20precios%20de%20Laurel%20de%20flor.%20Quedo%20a%20la%20espera%2C%20saludos." target="_blank" class="btn-cta">Pedir</a></div></article>
+          <article class="pc"><div class="pc__img"><img src="Platines de Peumo.jpeg" alt="Platines de Peumo" loading="lazy"/><span class="pc__badge tag">Nativa</span></div><div class="pc__body"><h3 class="pc__name">Peumo (plantines)</h3><p style="font-style:italic;font-size:13px;color:var(--clr-outline)">Cryptocarya alba</p><p style="font-size:14px;color:var(--clr-on-surface-variant);margin-top:6px">Plantines listos para trasplante. Ideales para revegetación.</p><div style="display:flex;flex-wrap:wrap;gap:5px;margin-top:8px"><span class="tag">Nativa</span><span class="tag">Revegetación</span></div></div><div class="pc__foot"><div class="pc__price">Plantines</div><a href="https://wa.me/56996997848?text=Hola%20equipo%20de%20Vivero%20Los%20Maitenes%2C%20quisiera%20consultar%20disponibilidad%2C%20tama%C3%B1os%20y%20precios%20de%20Peumo%20%28plantines%29.%20Quedo%20a%20la%20espera%2C%20saludos." target="_blank" class="btn-cta">Pedir</a></div></article>
+          <article class="pc"><div class="pc__img"><img src="Stenocarpus.jpeg" alt="Stenocarpus" loading="lazy"/><span class="pc__badge tag" style="background:rgba(188,238,200,.25);color:#144227">Árbol</span></div><div class="pc__body"><h3 class="pc__name">Stenocarpus</h3><p style="font-style:italic;font-size:13px;color:var(--clr-outline)">Stenocarpus sinuatus</p><p style="font-size:14px;color:var(--clr-on-surface-variant);margin-top:6px">Flores rojas en forma de rueda. Follaje oscuro y brillante.</p><div style="display:flex;flex-wrap:wrap;gap:5px;margin-top:8px"><span class="tag">☀️ Sol pleno</span><span class="tag">Ornamental</span></div></div><div class="pc__foot"><div class="pc__price">Consultar precio</div><a href="https://wa.me/56996997848?text=Hola%20equipo%20de%20Vivero%20Los%20Maitenes%2C%20quisiera%20consultar%20disponibilidad%2C%20tama%C3%B1os%20y%20precios%20de%20Stenocarpus.%20Quedo%20a%20la%20espera%2C%20saludos." target="_blank" class="btn-cta">Pedir</a></div></article>
+          <article class="pc"><div class="pc__img"><img src="Tobira enano.jpeg" alt="Tobira enano" loading="lazy"/><span class="pc__badge tag" style="background:rgba(198,239,161,.25);color:#466729">Arbusto</span></div><div class="pc__body"><h3 class="pc__name">Tobira enano</h3><p style="font-style:italic;font-size:13px;color:var(--clr-outline)">Pittosporum tobira nana</p><p style="font-size:14px;color:var(--clr-on-surface-variant);margin-top:6px">Arbusto compacto ideal para bordes y bajo mantenimiento.</p><div style="display:flex;flex-wrap:wrap;gap:5px;margin-top:8px"><span class="tag">☀️ Sol / Semi</span><span class="tag">Bajo mantenimiento</span></div></div><div class="pc__foot"><div class="pc__price">Consultar precio</div><a href="https://wa.me/56996997848?text=Hola%20equipo%20de%20Vivero%20Los%20Maitenes%2C%20quisiera%20consultar%20disponibilidad%2C%20tama%C3%B1os%20y%20precios%20de%20Tobira%20enano.%20Quedo%20a%20la%20espera%2C%20saludos." target="_blank" class="btn-cta">Pedir</a></div></article>
+          <article class="pc"><div class="pc__img"><img src="Verónicas.jpeg" alt="Verónicas" loading="lazy"/><span class="pc__badge tag" style="background:rgba(198,239,161,.25);color:#466729">Arbusto</span></div><div class="pc__body"><h3 class="pc__name">Verónica</h3><p style="font-style:italic;font-size:13px;color:var(--clr-outline)">Hebe speciosa</p><p style="font-size:14px;color:var(--clr-on-surface-variant);margin-top:6px">Floración muy larga en tonos violeta, rosado y blanco.</p><div style="display:flex;flex-wrap:wrap;gap:5px;margin-top:8px"><span class="tag">🌤 Sol / Semi</span><span class="tag">Larga floración</span></div></div><div class="pc__foot"><div class="pc__price">Consultar precio</div><a href="https://wa.me/56996997848?text=Hola%20equipo%20de%20Vivero%20Los%20Maitenes%2C%20quisiera%20consultar%20disponibilidad%2C%20tama%C3%B1os%20y%20precios%20de%20Ver%C3%B3nica.%20Quedo%20a%20la%20espera%2C%20saludos." target="_blank" class="btn-cta">Pedir</a></div></article>
+          <article class="pc"><div class="pc__img"><img src="Ciprés macrocarpa.jpeg" alt="Ciprés macrocarpa" loading="lazy"/><span class="pc__badge tag" style="background:rgba(255,220,100,.25);color:#7e4111">Ideal cercos vivos</span></div><div class="pc__body"><h3 class="pc__name">Ciprés macrocarpa</h3><p style="font-style:italic;font-size:13px;color:var(--clr-outline)">Cupressus macrocarpa</p><p style="font-size:14px;color:var(--clr-on-surface-variant);margin-top:6px">Crecimiento rápido y resistente al viento. Excelente para cortinas.</p><div style="display:flex;flex-wrap:wrap;gap:5px;margin-top:8px"><span class="tag">☀️ Sol pleno</span><span class="tag">Cortinas viento</span></div></div><div class="pc__foot"><div class="pc__price">Consultar precio</div><a href="https://wa.me/56996997848?text=Hola%20equipo%20de%20Vivero%20Los%20Maitenes%2C%20quisiera%20consultar%20disponibilidad%2C%20tama%C3%B1os%20y%20precios%20de%20Cipr%C3%A9s%20macrocarpa.%20Quedo%20a%20la%20espera%2C%20saludos." target="_blank" class="btn-cta">Pedir</a></div></article>
+          <article class="pc"><div class="pc__img"><img src="Flor del pájaro o ave del paraíso.jpeg" alt="Ave del paraíso" loading="lazy"/><span class="pc__badge tag" style="background:rgba(255,180,131,.2);color:#602c00">Ornamental</span></div><div class="pc__body"><h3 class="pc__name">Ave del paraíso</h3><p style="font-style:italic;font-size:13px;color:var(--clr-outline)">Strelitzia reginae</p><p style="font-size:14px;color:var(--clr-on-surface-variant);margin-top:6px">Flor tropical icónica con pétalos naranjas y azules.</p><div style="display:flex;flex-wrap:wrap;gap:5px;margin-top:8px"><span class="tag">☀️ Sol pleno</span><span class="tag">🌸 Primavera</span></div></div><div class="pc__foot"><div class="pc__price">Consultar precio</div><a href="https://wa.me/56996997848?text=Hola%20equipo%20de%20Vivero%20Los%20Maitenes%2C%20quisiera%20consultar%20disponibilidad%2C%20tama%C3%B1os%20y%20precios%20de%20Ave%20del%20para%C3%ADso.%20Quedo%20a%20la%20espera%2C%20saludos." target="_blank" class="btn-cta">Pedir</a></div></article>
+          <!-- duplicado para loop infinito -->
+          <article class="pc" aria-hidden="true"><div class="pc__img"><img src="Palmeras.jpeg" alt="" loading="lazy"/><span class="pc__badge tag" style="background:rgba(188,238,200,.25);color:#144227">Árbol</span></div><div class="pc__body"><h3 class="pc__name">Palmera</h3><p style="font-style:italic;font-size:13px;color:var(--clr-outline)">Trachycarpus fortunei</p><p style="font-size:14px;color:var(--clr-on-surface-variant);margin-top:6px">Palmera resistente al frío para cualquier jardín.</p><div style="display:flex;flex-wrap:wrap;gap:5px;margin-top:8px"><span class="tag">☀️ Sol pleno</span><span class="tag">Resistente frío</span></div></div><div class="pc__foot"><div class="pc__price">Consultar precio</div><a href="https://wa.me/56996997848?text=Hola%20equipo%20de%20Vivero%20Los%20Maitenes%2C%20quisiera%20consultar%20disponibilidad%2C%20tama%C3%B1os%20y%20precios%20de%20Palmera.%20Quedo%20a%20la%20espera%2C%20saludos." target="_blank" class="btn-cta">Pedir</a></div></article>
+          <article class="pc" aria-hidden="true"><div class="pc__img"><img src="Pino azul.jpeg" alt="" loading="lazy"/><span class="pc__badge tag" style="background:rgba(188,238,200,.25);color:#144227">Árbol</span></div><div class="pc__body"><h3 class="pc__name">Pino azul</h3><p style="font-style:italic;font-size:13px;color:var(--clr-outline)">Picea pungens glauca</p><p style="font-size:14px;color:var(--clr-on-surface-variant);margin-top:6px">Conífera de follaje azul plateado único. Elegante y lento.</p><div style="display:flex;flex-wrap:wrap;gap:5px;margin-top:8px"><span class="tag">☀️ Sol pleno</span><span class="tag">Ornamental</span></div></div><div class="pc__foot"><div class="pc__price">Consultar precio</div><a href="https://wa.me/56996997848?text=Hola%20equipo%20de%20Vivero%20Los%20Maitenes%2C%20quisiera%20consultar%20disponibilidad%2C%20tama%C3%B1os%20y%20precios%20de%20Pino%20azul.%20Quedo%20a%20la%20espera%2C%20saludos." target="_blank" class="btn-cta">Pedir</a></div></article>
+          <article class="pc" aria-hidden="true"><div class="pc__img"><img src="Pitosporos nigricans.jpeg" alt="" loading="lazy"/><span class="pc__badge tag" style="background:rgba(198,239,161,.25);color:#466729">Arbusto</span></div><div class="pc__body"><h3 class="pc__name">Pitosporo nigricans</h3><p style="font-style:italic;font-size:13px;color:var(--clr-outline)">Pittosporum tenuifolium</p><p style="font-size:14px;color:var(--clr-on-surface-variant);margin-top:6px">Follaje oscuro muy usado en jardinería paisajista moderna.</p><div style="display:flex;flex-wrap:wrap;gap:5px;margin-top:8px"><span class="tag">☀️ Sol / Semi</span><span class="tag">Follaje ornamental</span></div></div><div class="pc__foot"><div class="pc__price">Consultar precio</div><a href="https://wa.me/56996997848?text=Hola%20equipo%20de%20Vivero%20Los%20Maitenes%2C%20quisiera%20consultar%20disponibilidad%2C%20tama%C3%B1os%20y%20precios%20de%20Pitosporo%20nigricans.%20Quedo%20a%20la%20espera%2C%20saludos." target="_blank" class="btn-cta">Pedir</a></div></article>
+          <article class="pc" aria-hidden="true"><div class="pc__img"><img src="Plantines de liquidámbar.jpeg" alt="" loading="lazy"/><span class="pc__badge tag" style="background:rgba(188,238,200,.25);color:#144227">Árbol</span></div><div class="pc__body"><h3 class="pc__name">Liquidámbar</h3><p style="font-style:italic;font-size:13px;color:var(--clr-outline)">Liquidambar styraciflua</p><p style="font-size:14px;color:var(--clr-on-surface-variant);margin-top:6px">Follaje multicolor en otoño: rojos, naranjas y amarillos.</p><div style="display:flex;flex-wrap:wrap;gap:5px;margin-top:8px"><span class="tag">☀️ Sol pleno</span><span class="tag">🍂 Otoño</span></div></div><div class="pc__foot"><div class="pc__price">Plantines</div><a href="https://wa.me/56996997848?text=Hola%20equipo%20de%20Vivero%20Los%20Maitenes%2C%20quisiera%20consultar%20disponibilidad%2C%20tama%C3%B1os%20y%20precios%20de%20Liquid%C3%A1mbar.%20Quedo%20a%20la%20espera%2C%20saludos." target="_blank" class="btn-cta">Pedir</a></div></article>
+          <article class="pc" aria-hidden="true"><div class="pc__img"><img src="Plantines de laurel de flor.jpeg" alt="" loading="lazy"/><span class="pc__badge tag" style="background:rgba(188,238,200,.25);color:#144227">Árbol</span></div><div class="pc__body"><h3 class="pc__name">Laurel de flor</h3><p style="font-style:italic;font-size:13px;color:var(--clr-outline)">Nerium oleander</p><p style="font-size:14px;color:var(--clr-on-surface-variant);margin-top:6px">Floración abundante en verano. Resistente y de rápido crecimiento.</p><div style="display:flex;flex-wrap:wrap;gap:5px;margin-top:8px"><span class="tag">☀️ Sol pleno</span><span class="tag">🌸 Primavera</span></div></div><div class="pc__foot"><div class="pc__price">Plantines</div><a href="https://wa.me/56996997848?text=Hola%20equipo%20de%20Vivero%20Los%20Maitenes%2C%20quisiera%20consultar%20disponibilidad%2C%20tama%C3%B1os%20y%20precios%20de%20Laurel%20de%20flor.%20Quedo%20a%20la%20espera%2C%20saludos." target="_blank" class="btn-cta">Pedir</a></div></article>
+          <article class="pc" aria-hidden="true"><div class="pc__img"><img src="Platines de Peumo.jpeg" alt="" loading="lazy"/><span class="pc__badge tag">Nativa</span></div><div class="pc__body"><h3 class="pc__name">Peumo (plantines)</h3><p style="font-style:italic;font-size:13px;color:var(--clr-outline)">Cryptocarya alba</p><p style="font-size:14px;color:var(--clr-on-surface-variant);margin-top:6px">Plantines listos para trasplante. Ideales para revegetación.</p><div style="display:flex;flex-wrap:wrap;gap:5px;margin-top:8px"><span class="tag">Nativa</span><span class="tag">Revegetación</span></div></div><div class="pc__foot"><div class="pc__price">Plantines</div><a href="https://wa.me/56996997848?text=Hola%20equipo%20de%20Vivero%20Los%20Maitenes%2C%20quisiera%20consultar%20disponibilidad%2C%20tama%C3%B1os%20y%20precios%20de%20Peumo%20%28plantines%29.%20Quedo%20a%20la%20espera%2C%20saludos." target="_blank" class="btn-cta">Pedir</a></div></article>
+          <article class="pc" aria-hidden="true"><div class="pc__img"><img src="Stenocarpus.jpeg" alt="" loading="lazy"/><span class="pc__badge tag" style="background:rgba(188,238,200,.25);color:#144227">Árbol</span></div><div class="pc__body"><h3 class="pc__name">Stenocarpus</h3><p style="font-style:italic;font-size:13px;color:var(--clr-outline)">Stenocarpus sinuatus</p><p style="font-size:14px;color:var(--clr-on-surface-variant);margin-top:6px">Flores rojas en forma de rueda. Follaje oscuro y brillante.</p><div style="display:flex;flex-wrap:wrap;gap:5px;margin-top:8px"><span class="tag">☀️ Sol pleno</span><span class="tag">Ornamental</span></div></div><div class="pc__foot"><div class="pc__price">Consultar precio</div><a href="https://wa.me/56996997848?text=Hola%20equipo%20de%20Vivero%20Los%20Maitenes%2C%20quisiera%20consultar%20disponibilidad%2C%20tama%C3%B1os%20y%20precios%20de%20Stenocarpus.%20Quedo%20a%20la%20espera%2C%20saludos." target="_blank" class="btn-cta">Pedir</a></div></article>
+          <article class="pc" aria-hidden="true"><div class="pc__img"><img src="Tobira enano.jpeg" alt="" loading="lazy"/><span class="pc__badge tag" style="background:rgba(198,239,161,.25);color:#466729">Arbusto</span></div><div class="pc__body"><h3 class="pc__name">Tobira enano</h3><p style="font-style:italic;font-size:13px;color:var(--clr-outline)">Pittosporum tobira nana</p><p style="font-size:14px;color:var(--clr-on-surface-variant);margin-top:6px">Arbusto compacto ideal para bordes y bajo mantenimiento.</p><div style="display:flex;flex-wrap:wrap;gap:5px;margin-top:8px"><span class="tag">☀️ Sol / Semi</span><span class="tag">Bajo mantenimiento</span></div></div><div class="pc__foot"><div class="pc__price">Consultar precio</div><a href="https://wa.me/56996997848?text=Hola%20equipo%20de%20Vivero%20Los%20Maitenes%2C%20quisiera%20consultar%20disponibilidad%2C%20tama%C3%B1os%20y%20precios%20de%20Tobira%20enano.%20Quedo%20a%20la%20espera%2C%20saludos." target="_blank" class="btn-cta">Pedir</a></div></article>
+          <article class="pc" aria-hidden="true"><div class="pc__img"><img src="Verónicas.jpeg" alt="" loading="lazy"/><span class="pc__badge tag" style="background:rgba(198,239,161,.25);color:#466729">Arbusto</span></div><div class="pc__body"><h3 class="pc__name">Verónica</h3><p style="font-style:italic;font-size:13px;color:var(--clr-outline)">Hebe speciosa</p><p style="font-size:14px;color:var(--clr-on-surface-variant);margin-top:6px">Floración muy larga en tonos violeta, rosado y blanco.</p><div style="display:flex;flex-wrap:wrap;gap:5px;margin-top:8px"><span class="tag">🌤 Sol / Semi</span><span class="tag">Larga floración</span></div></div><div class="pc__foot"><div class="pc__price">Consultar precio</div><a href="https://wa.me/56996997848?text=Hola%20equipo%20de%20Vivero%20Los%20Maitenes%2C%20quisiera%20consultar%20disponibilidad%2C%20tama%C3%B1os%20y%20precios%20de%20Ver%C3%B3nica.%20Quedo%20a%20la%20espera%2C%20saludos." target="_blank" class="btn-cta">Pedir</a></div></article>
+          <article class="pc" aria-hidden="true"><div class="pc__img"><img src="Ciprés macrocarpa.jpeg" alt="" loading="lazy"/><span class="pc__badge tag" style="background:rgba(255,220,100,.25);color:#7e4111">Ideal cercos vivos</span></div><div class="pc__body"><h3 class="pc__name">Ciprés macrocarpa</h3><p style="font-style:italic;font-size:13px;color:var(--clr-outline)">Cupressus macrocarpa</p><p style="font-size:14px;color:var(--clr-on-surface-variant);margin-top:6px">Crecimiento rápido y resistente al viento. Excelente para cortinas.</p><div style="display:flex;flex-wrap:wrap;gap:5px;margin-top:8px"><span class="tag">☀️ Sol pleno</span><span class="tag">Cortinas viento</span></div></div><div class="pc__foot"><div class="pc__price">Consultar precio</div><a href="https://wa.me/56996997848?text=Hola%20equipo%20de%20Vivero%20Los%20Maitenes%2C%20quisiera%20consultar%20disponibilidad%2C%20tama%C3%B1os%20y%20precios%20de%20Cipr%C3%A9s%20macrocarpa.%20Quedo%20a%20la%20espera%2C%20saludos." target="_blank" class="btn-cta">Pedir</a></div></article>
+          <article class="pc" aria-hidden="true"><div class="pc__img"><img src="Flor del pájaro o ave del paraíso.jpeg" alt="" loading="lazy"/><span class="pc__badge tag" style="background:rgba(255,180,131,.2);color:#602c00">Ornamental</span></div><div class="pc__body"><h3 class="pc__name">Ave del paraíso</h3><p style="font-style:italic;font-size:13px;color:var(--clr-outline)">Strelitzia reginae</p><p style="font-size:14px;color:var(--clr-on-surface-variant);margin-top:6px">Flor tropical icónica con pétalos naranjas y azules.</p><div style="display:flex;flex-wrap:wrap;gap:5px;margin-top:8px"><span class="tag">☀️ Sol pleno</span><span class="tag">🌸 Primavera</span></div></div><div class="pc__foot"><div class="pc__price">Consultar precio</div><a href="https://wa.me/56996997848?text=Hola%20equipo%20de%20Vivero%20Los%20Maitenes%2C%20quisiera%20consultar%20disponibilidad%2C%20tama%C3%B1os%20y%20precios%20de%20Ave%20del%20para%C3%ADso.%20Quedo%20a%20la%20espera%2C%20saludos." target="_blank" class="btn-cta">Pedir</a></div></article>
+        </div>
+      </div>
+
+    </div>
+    <div style="text-align:center;margin-top:var(--sp-lg)">
+      <a href="#contacto" class="btn btn-primary">Consultar disponibilidad completa</a>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section id="servicios" class="services">
+  <div class="container">
+    <div class="services__hd">
+      <p class="s-label">Lo que ofrecemos</p>
+      <h2 class="s-title">Servicios para tu jardín ideal</h2>
+      <p class="s-body">Más allá de las plantas, te acompañamos en cada etapa de tu proyecto.</p>
+    </div>
+    <div class="srv-grid">
+
+      <div class="srv" data-num="01">
+        <div class="srv__glow"></div>
+        <div class="srv__top"><div class="srv__ico-wrap"><div class="srv__ico">🌿</div><div class="srv__ico-ring"></div></div><span class="srv__num">01</span></div>
+        <h3 class="srv__t">Venta de plantas</h3>
+        <p class="srv__d">Más de 500 especies en contenedor y a raíz desnuda. Nativas, ornamentales, forestales y frutales seleccionadas con criterios de calidad y rusticidad.</p>
+        <div class="srv__foot"><span class="srv__tag">Todo el año</span><span class="srv__arr">→</span></div>
+        <div class="srv__bar"></div>
+      </div>
+
+      <div class="srv" data-num="02">
+        <div class="srv__glow"></div>
+        <div class="srv__top"><div class="srv__ico-wrap"><div class="srv__ico">🏡</div><div class="srv__ico-ring"></div></div><span class="srv__num">02</span></div>
+        <h3 class="srv__t">Paisajismo</h3>
+        <p class="srv__d">Diseño y ejecución de jardines residenciales y corporativos. Proyectos sustentables que integran especies nativas con bajo consumo de agua y mantenimiento.</p>
+        <div class="srv__foot"><span class="srv__tag">Residencial y corporativo</span><span class="srv__arr">→</span></div>
+        <div class="srv__bar"></div>
+      </div>
+
+      <div class="srv" data-num="03">
+        <div class="srv__glow"></div>
+        <div class="srv__top"><div class="srv__ico-wrap"><div class="srv__ico">🌱</div><div class="srv__ico-ring"></div></div><span class="srv__num">03</span></div>
+        <h3 class="srv__t">Propagación a pedido</h3>
+        <p class="srv__d">Producción de grandes volúmenes para municipalidades, empresas y proyectos de reforestación. Coordinamos plazos y especies según tus requerimientos.</p>
+        <div class="srv__foot"><span class="srv__tag">Empresas y municipios</span><span class="srv__arr">→</span></div>
+        <div class="srv__bar"></div>
+      </div>
+
+      <div class="srv" data-num="04">
+        <div class="srv__glow"></div>
+        <div class="srv__top"><div class="srv__ico-wrap"><div class="srv__ico">🚚</div><div class="srv__ico-ring"></div></div><span class="srv__num">04</span></div>
+        <h3 class="srv__t">Despacho a domicilio</h3>
+        <p class="srv__d">Llevamos tus plantas directamente a tu hogar o proyecto. Cobertura en toda la Región del Maule con transporte especializado para garantizar el estado de cada ejemplar.</p>
+        <div class="srv__foot"><span class="srv__tag">Región del Maule</span><span class="srv__arr">→</span></div>
+        <div class="srv__bar"></div>
+      </div>
+
+      <div class="srv" data-num="05">
+        <div class="srv__glow"></div>
+        <div class="srv__top"><div class="srv__ico-wrap"><div class="srv__ico">📋</div><div class="srv__ico-ring"></div></div><span class="srv__num">05</span></div>
+        <h3 class="srv__t">Asesoría técnica</h3>
+        <p class="srv__d">Nuestros consultores te guían en la selección de especies según tu suelo, clima y objetivos. Recomendaciones personalizadas sin costo adicional en cada compra.</p>
+        <div class="srv__foot"><span class="srv__tag">Sin costo adicional</span><span class="srv__arr">→</span></div>
+        <div class="srv__bar"></div>
+      </div>
+
+      <div class="srv" data-num="06">
+        <div class="srv__glow"></div>
+        <div class="srv__top"><div class="srv__ico-wrap"><div class="srv__ico">🌳</div><div class="srv__ico-ring"></div></div><span class="srv__num">06</span></div>
+        <h3 class="srv__t">Revegetación</h3>
+        <p class="srv__d">Recuperación ambiental con especies nativas para empresas, organismos públicos y proyectos de compensación. Asesoría en selección de especies y seguimiento post-plantación.</p>
+        <div class="srv__foot"><span class="srv__tag">Proyectos ambientales</span><span class="srv__arr">→</span></div>
+        <div class="srv__bar"></div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- GALLERY -->
+<section id="galeria" class="gallery">
+  <div class="container">
+    <div class="gallery__hd">
+      <p class="s-label">Nuestro vivero</p>
+      <h2 class="s-title">El vivero en imágenes</h2>
+    </div>
+    <div class="gal-grid">
+      <div class="gal-item" onclick="openLb(this)"><img src="imagenes del lugar/WhatsApp Image 2026-06-26 at 12.58.59 (1).jpeg" alt="Vivero Maitenes" loading="lazy"/><div class="gal-item__ov"><span class="gal-item__label">Vista general</span></div></div>
+      <div class="gal-item" onclick="openLb(this)"><img src="imagenes del lugar/WhatsApp Image 2026-06-26 at 12.58.59.jpeg" alt="Plantas" loading="lazy"/><div class="gal-item__ov"><span class="gal-item__label">Plantas del vivero</span></div></div>
+      <div class="gal-item" onclick="openLb(this)"><img src="imagenes del lugar/WhatsApp Image 2026-06-26 at 12.59.01.jpeg" alt="Interior" loading="lazy"/><div class="gal-item__ov"><span class="gal-item__label">Interior invernadero</span></div></div>
+      <div class="gal-item" onclick="openLb(this)"><img src="imagenes del lugar/WhatsApp Image 2026-06-26 at 12.59.02 (2).jpeg" alt="Sección" loading="lazy"/><div class="gal-item__ov"><span class="gal-item__label">Sección de plantas</span></div></div>
+      <div class="gal-item" onclick="openLb(this)"><img src="imagenes del lugar/WhatsApp Image 2026-06-26 at 12.59.02 (3).jpeg" alt="Variedad" loading="lazy"/><div class="gal-item__ov"><span class="gal-item__label">Variedad de especies</span></div></div>
+      <div class="gal-item" onclick="openLb(this)"><img src="imagenes del lugar/WhatsApp Image 2026-06-26 at 12.59.03 (1).jpeg" alt="Cultivo" loading="lazy"/><div class="gal-item__ov"><span class="gal-item__label">Zona de cultivo</span></div></div>
+      <div class="gal-item" onclick="openLb(this)"><img src="imagenes del lugar/WhatsApp Image 2026-06-26 at 13.56.27.jpeg" alt="Invernadero" loading="lazy"/><div class="gal-item__ov"><span class="gal-item__label">Invernadero</span></div></div>
+      <div class="gal-item" onclick="openLb(this)"><img src="imagenes del lugar/WhatsApp Image 2026-06-26 at 13.56.28.jpeg" alt="Vista" loading="lazy"/><div class="gal-item__ov"><span class="gal-item__label">Vista del predio</span></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section class="testimonials">
+  <div class="container">
+    <div style="text-align:center;max-width:560px;margin:0 auto var(--sp-lg)">
+      <p class="s-label">Lo que dicen nuestros clientes</p>
+      <h2 class="s-title">Testimonios</h2>
+    </div>
+    <div class="test-grid">
+      <div class="tc"><div class="tc__stars">★★★★★</div><p class="tc__text">"Compramos 80 coigüés para nuestro proyecto de reforestación. Calidad impecable, todos prendieron a la primera. Los recomendamos ampliamente."</p><div class="tc__author"><div class="tc__av">MF</div><div><div class="tc__name">María Fernanda Ojeda</div><div class="tc__role">Municipalidad de Valdivia</div></div></div></div>
+      <div class="tc"><div class="tc__stars">★★★★★</div><p class="tc__text">"Encontré plantas que no conseguía en ningún otro vivero. El equipo me asesoró perfectamente. Mi jardín luce increíble todo el año."</p><div class="tc__author"><div class="tc__av">JL</div><div><div class="tc__name">Jorge Labraña</div><div class="tc__role">Cliente particular, Panguipulli</div></div></div></div>
+      <div class="tc"><div class="tc__stars">★★★★★</div><p class="tc__text">"El servicio de paisajismo superó mis expectativas. Un jardín nativo que requiere mínimo mantenimiento y se ve hermoso todo el año."</p><div class="tc__author"><div class="tc__av">CR</div><div><div class="tc__name">Carola Reyes</div><div class="tc__role">Propietaria, Los Lagos</div></div></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contacto" class="contact">
+  <div class="container">
+    <div style="text-align:center;max-width:560px;margin:0 auto var(--sp-lg)">
+      <p class="s-label">Contáctanos</p>
+      <h2 class="s-title">¿Tienes un proyecto en mente?</h2>
+      <p class="s-body">Cuéntanos qué necesitas y te respondemos a la brevedad.</p>
+    </div>
+    <div class="contact__grid">
+      <div class="ci">
+        <div class="ci-item"><div class="ci-ico">📍</div><div><p class="ci-lbl">Ubicación</p><p class="ci-val">Itahue, Molina, Región del Maule, Chile</p></div></div>
+        <div class="ci-item"><div class="ci-ico">🕒</div><div><p class="ci-lbl">Horario</p><p class="ci-val">Lunes a sábado: 9:00 – 18:00<br>Domingos: 10:00 – 14:00</p></div></div>
+        <div class="ci-item"><div class="ci-ico">💬</div><div><p class="ci-lbl">WhatsApp</p><a href="https://wa.me/56996997848?text=Hola%20equipo%20de%20Vivero%20Los%20Maitenes%2C%20me%20comunico%20para%20consultar%20sobre%20disponibilidad%20de%20plantas%20y%20precios.%20Quedo%20atento%2Fa%20a%20su%20respuesta.%20Saludos." target="_blank" style="color:var(--clr-secondary);font-weight:600;font-size:15px">Escríbenos directamente →</a></div></div>
+        <iframe src="https://maps.google.com/maps?q=Itahue,+Molina,+Maule,+Chile&output=embed" width="100%" height="400" style="border:0;border-radius:var(--r-lg);margin-top:8px;display:block" allowfullscreen="" loading="lazy"></iframe>
+        <a href="https://maps.app.goo.gl/JAurHC9jrqrXFjx37" target="_blank" class="btn btn-primary" style="margin-top:12px">Cómo llegar →</a>
+      </div>
+      <form class="cform" id="cForm" onsubmit="sendForm(event)">
+        <div class="frow">
+          <div class="fg"><label class="fl" for="cn">Nombre</label><input class="fi2" type="text" id="cn" placeholder="Tu nombre" required /></div>
+          <div class="fg"><label class="fl" for="ce">Correo</label><input class="fi2" type="email" id="ce" placeholder="tu@correo.com" required /></div>
+        </div>
+        <div class="fg"><label class="fl" for="ct">Teléfono (opcional)</label><input class="fi2" type="tel" id="ct" placeholder="+56 9 xxxx xxxx" /></div>
+        <div class="fg">
+          <label class="fl" for="cs">¿Qué te interesa?</label>
+          <select class="fs2" id="cs">
+            <option value="">Selecciona una opción</option>
+            <option>Compra de plantas</option>
+            <option>Servicio de paisajismo</option>
+            <option>Despacho a domicilio</option>
+            <option>Proyecto de revegetación / reforestación</option>
+            <option>Asesoría técnica</option>
+            <option>Otro</option>
+          </select>
+        </div>
+        <div class="fg"><label class="fl" for="cm">Mensaje</label><textarea class="ft2" id="cm" placeholder="Cuéntanos sobre tu proyecto, qué plantas necesitas..." required></textarea></div>
+        <button type="submit" class="btn btn-primary" style="width:100%;justify-content:center;padding:15px">Enviar mensaje</button>
+        <div id="formOk" style="display:none;padding:14px;border-radius:var(--r-sm);background:var(--clr-secondary-container);color:var(--clr-on-secondary-container);font-size:15px;text-align:center;font-weight:500"></div>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="container">
+    <div class="footer__top">
+      <div>
+        <div class="footer__brand"><img src="logo1.png" alt="Logo Vivero Los Maitenes" style="height:130px;width:auto;display:block;margin:0 auto 16px;">Vivero Maitenes</div>
+        <p class="footer__desc">Árboles nativos, plantas ornamentales, forestales y frutales. Disponibles en diferentes tamaños y precios según tu proyecto o jardín.</p>
+        <div class="footer__social">
+          <a href="#" class="footer__slink" aria-label="Instagram">📸</a>
+          <a href="#" class="footer__slink" aria-label="Facebook">📘</a>
+          <a href="https://wa.me/56996997848?text=Hola%20equipo%20de%20Vivero%20Los%20Maitenes%2C%20me%20comunico%20para%20consultar%20sobre%20disponibilidad%20de%20plantas%20y%20precios.%20Quedo%20atento%2Fa%20a%20su%20respuesta.%20Saludos." target="_blank" class="footer__slink" aria-label="WhatsApp">💬</a>
+        </div>
+      </div>
+      <div>
+        <p class="footer__ct">Navegación</p>
+        <ul class="footer__links">
+          <li><a href="#inicio">Inicio</a></li>
+          <li><a href="#nosotros">Nosotros</a></li>
+          <li><a href="#catalogo">Catálogo</a></li>
+          <li><a href="#servicios">Servicios</a></li>
+          <li><a href="#galeria">Galería</a></li>
+          <li><a href="#contacto">Contacto</a></li>
+        </ul>
+      </div>
+      <div>
+        <p class="footer__ct">Horarios</p>
+        <ul class="footer__links">
+          <li><span>Lun–Vie: 9:00–18:00</span></li>
+          <li><span>Sábado: 9:00–18:00</span></li>
+          <li><span>Domingo: 10:00–14:00</span></li>
+        </ul>
+        <p class="footer__ct" style="margin-top:24px">Servicios</p>
+        <ul class="footer__links">
+          <li><a href="#servicios">Venta de plantas</a></li>
+          <li><a href="#servicios">Paisajismo</a></li>
+          <li><a href="#servicios">Despacho a domicilio</a></li>
+          <li><a href="#servicios">Revegetación</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer__bot">
+      <span>© 2025 Vivero Maitenes · Todos los derechos reservados</span>
+      <span>Hecho con 🌿 en la Región del Maule, Chile</span>
+    </div>
+  </div>
+</footer>
+
+<!-- WA FAB -->
+<a href="https://wa.me/56996997848?text=Hola%20equipo%20de%20Vivero%20Los%20Maitenes%2C%20me%20comunico%20para%20consultar%20sobre%20disponibilidad%20de%20plantas%20y%20precios.%20Quedo%20atento%2Fa%20a%20su%20respuesta.%20Saludos." target="_blank" class="wa-fab" aria-label="Contactar por WhatsApp">
+  <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
+</a>
+
+<!-- LIGHTBOX -->
+<div class="lb" id="lb" onclick="if(event.target===this||event.target.classList.contains('lb__close'))closeLb()">
+  <span class="lb__close">✕</span>
+  <img id="lbImg" src="" alt="" />
+</div>
+
+<script>
+  /* Navbar scroll */
+  const nav = document.getElementById('navbar');
+  window.addEventListener('scroll', () => nav.classList.toggle('scrolled', window.scrollY > 50), { passive: true });
+
+  /* Hamburger */
+  const hBtn = document.getElementById('hBtn');
+  const mob  = document.getElementById('mobMenu');
+  hBtn.addEventListener('click', () => { hBtn.classList.toggle('open'); mob.classList.toggle('open'); });
+  function closeMob() { hBtn.classList.remove('open'); mob.classList.remove('open'); }
+
+  /* Smooth scroll */
+  document.querySelectorAll('a[href^="#"]').forEach(a => {
+    a.addEventListener('click', function(e) {
+      const t = document.querySelector(this.getAttribute('href'));
+      if (!t) return;
+      e.preventDefault(); closeMob();
+      window.scrollTo({ top: t.getBoundingClientRect().top + window.scrollY - 92, behavior: 'smooth' });
+    });
+  });
+
+  /* Filter */
+  function doFilter(cat, btn) {
+    document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    document.querySelectorAll('.pc').forEach(card => {
+      const show = cat === 'all' || (card.dataset.cat || '').includes(cat);
+      card.style.display = show ? 'flex' : 'none';
+      if (show) {
+        card.style.opacity = '0'; card.style.transform = 'translateY(16px)';
+        requestAnimationFrame(() => {
+          card.style.transition = 'opacity .35s ease, transform .35s ease';
+          card.style.opacity = '1'; card.style.transform = 'translateY(0)';
+        });
+      }
+    });
+  }
+
+  /* Form */
+  function sendForm(e) {
+    e.preventDefault();
+    const nombre  = document.getElementById('cn').value.trim();
+    const correo  = document.getElementById('ce').value.trim();
+    const telefono = document.getElementById('ct').value.trim();
+    const interes  = document.getElementById('cs').value;
+    const mensaje  = document.getElementById('cm').value.trim();
+
+    let txt = `Hola equipo de Vivero Los Maitenes, les escribo desde el sitio web:\n\n`;
+    txt += `*Nombre:* ${nombre}\n`;
+    txt += `*Correo:* ${correo}\n`;
+    if (telefono) txt += `*Teléfono:* ${telefono}\n`;
+    if (interes)  txt += `*Interés:* ${interes}\n`;
+    txt += `*Mensaje:* ${mensaje}`;
+
+    const url = `https://wa.me/56996997848?text=${encodeURIComponent(txt)}`;
+    window.open(url, '_blank');
+
+    const ok = document.getElementById('formOk');
+    ok.style.display = 'block';
+    ok.textContent = '✅ ¡Abriendo WhatsApp con tu mensaje!';
+    e.target.reset();
+    setTimeout(() => ok.style.display = 'none', 5000);
+  }
+
+  /* Lightbox */
+  function openLb(item) {
+    const img = item.querySelector('img');
+    document.getElementById('lbImg').src = img.src;
+    document.getElementById('lbImg').alt = img.alt;
+    document.getElementById('lb').classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+  function closeLb() {
+    document.getElementById('lb').classList.remove('open');
+    document.body.style.overflow = '';
+  }
+  document.addEventListener('keydown', e => { if (e.key === 'Escape') closeLb(); });
+
+  /* Scroll fade-in */
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(en => {
+      if (!en.isIntersecting) return;
+      const el = en.target;
+      el.style.opacity = '1'; el.style.transform = 'translateY(0)';
+      io.unobserve(el);
+      el.addEventListener('transitionend', function cleanup(e) {
+        if (e.propertyName !== 'opacity') return;
+        el.style.opacity = ''; el.style.transform = ''; el.style.transition = '';
+        el.removeEventListener('transitionend', cleanup);
+      });
+    });
+  }, { threshold: 0.08 });
+  /* Marquee drag-to-scroll */
+  document.querySelectorAll('.marquee-row').forEach(row => {
+    const inner = row.querySelector('.marquee-inner');
+    const isLeft = row.classList.contains('row-left');
+    const DUR = 55;
+    let dragging = false, startX = 0, startTx = 0;
+
+    function normTx(x) {
+      const hw = inner.scrollWidth / 2;
+      return -(((- x) % hw + hw) % hw);
+    }
+
+    row.addEventListener('mousedown', e => {
+      const m = new DOMMatrixReadOnly(getComputedStyle(inner).transform);
+      dragging = true;
+      startX = e.clientX;
+      startTx = m.m41;
+      inner.style.animation = 'none';
+      inner.style.transform = `translateX(${startTx}px)`;
+      e.preventDefault();
+    });
+
+    document.addEventListener('mousemove', e => {
+      if (!dragging) return;
+      inner.style.transform = `translateX(${normTx(startTx + (e.clientX - startX))}px)`;
+    });
+
+    document.addEventListener('mouseup', () => {
+      if (!dragging) return;
+      dragging = false;
+      const hw = inner.scrollWidth / 2;
+      const raw = inner.style.transform.match(/-?[\d.]+/);
+      const tx = raw ? normTx(parseFloat(raw[0])) : startTx;
+      const delay = isLeft ? tx * DUR / hw : -DUR * (hw + tx) / hw;
+      inner.style.transform = '';
+      inner.style.animation = 'none';
+      void inner.offsetWidth;
+      inner.style.animation = '';
+      inner.style.animationDelay = `${delay}s`;
+    });
+  });
+
+  let srvIdx = 0;
+  document.querySelectorAll('.pc, .srv, .tc, .ci-item, .gal-item').forEach(el => {
+    if (el.closest('.marquee-inner')) return;
+    el.style.opacity = '0'; el.style.transform = 'translateY(24px)';
+    const d = el.classList.contains('srv') ? `${srvIdx++ * 0.11}s` : '0s';
+    el.style.transition = `opacity .6s ease ${d}, transform .65s cubic-bezier(.22,1,.36,1) ${d}`;
+    io.observe(el);
+  });
+
+  /* Extended scroll-reveal: section headers, about block, contact form */
+  function revUp(els, base, step, ty) {
+    els.forEach((el, i) => {
+      el.style.opacity = '0';
+      el.style.transform = `translateY(${ty}px)`;
+      const d = base + i * step;
+      el.style.transition = `opacity .6s ease ${d}s, transform .65s cubic-bezier(.22,1,.36,1) ${d}s`;
+      io.observe(el);
+    });
+  }
+
+  document.querySelectorAll('.catalogue__hd, .services__hd, .gallery__hd').forEach(hd => {
+    revUp([...hd.querySelectorAll('.s-label, .s-title, .s-body')], 0, 0.13, 28);
+  });
+
+  ['.testimonials .container > div', '#contacto .container > div'].forEach(sel => {
+    const hd = document.querySelector(sel);
+    if (hd) revUp([...hd.querySelectorAll('.s-label, .s-title, .s-body')], 0, 0.13, 28);
+  });
+
+  const aph = document.querySelector('.about__photos');
+  if (aph) {
+    aph.style.opacity = '0'; aph.style.transform = 'translateX(-44px)';
+    aph.style.transition = 'opacity .8s ease, transform .85s cubic-bezier(.22,1,.36,1)';
+    io.observe(aph);
+  }
+
+  const atxt = document.querySelector('.about__grid > div:last-child');
+  if (atxt) {
+    revUp([...atxt.querySelectorAll('.s-label, .s-title, .s-body')], 0, 0.13, 24);
+    let li = 0;
+    atxt.querySelectorAll('.feature-list > li').forEach(el => {
+      el.style.opacity = '0'; el.style.transform = 'translateX(32px)';
+      const d = 0.25 + li++ * 0.1;
+      el.style.transition = `opacity .55s ease ${d}s, transform .6s cubic-bezier(.22,1,.36,1) ${d}s`;
+      io.observe(el);
+    });
+  }
+
+  const cfm = document.querySelector('.cform');
+  if (cfm) {
+    cfm.style.opacity = '0'; cfm.style.transform = 'translateX(36px)';
+    cfm.style.transition = 'opacity .7s ease .1s, transform .75s cubic-bezier(.22,1,.36,1) .1s';
+    io.observe(cfm);
+  }
+
+  /* Hero falling leaves */
+  (function () {
+    const hero = document.querySelector('.hero');
+    if (!hero) return;
+    const wrap = document.createElement('div');
+    wrap.className = 'hero__leaves';
+    hero.insertBefore(wrap, hero.querySelector('.hero__overlay').nextSibling);
+
+    const L1 = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M17 8C8 10 5.9 16.17 3.82 21.34L5.71 22l1-2.3A4.49 4.49 0 0 0 8 20C19 20 22 3 22 3c-1 2-8 2-5 8z"/></svg>';
+    const L2 = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" style="transform:scaleX(-1)"><path d="M17 8C8 10 5.9 16.17 3.82 21.34L5.71 22l1-2.3A4.49 4.49 0 0 0 8 20C19 20 22 3 22 3c-1 2-8 2-5 8z"/></svg>';
+    const ANIMS  = ['leaf-a','leaf-b','leaf-c'];
+    const COLORS = ['var(--clr-primary-fixed)','rgba(140,200,120,.7)','rgba(180,230,150,.6)','rgba(90,155,75,.75)'];
+
+    for (let i = 0; i < 26; i++) {
+      const el = document.createElement('span');
+      el.className = 'hero__leaf';
+      el.innerHTML = i % 4 === 0 ? L2 : L1;
+      const size  = 11 + Math.random() * 16;
+      const left  = 3  + Math.random() * 94;
+      const delay = Math.random() * 5;
+      const dur   = 5.5 + Math.random() * 5;
+      el.style.cssText = `left:${left}%;width:${size}px;height:${size}px;color:${COLORS[i % COLORS.length]};animation:${ANIMS[i % 3]} ${dur}s ${delay}s linear forwards`;
+      wrap.appendChild(el);
+    }
+  }());
+</script>
+</body>
+</html>

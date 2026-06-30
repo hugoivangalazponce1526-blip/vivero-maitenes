@@ -1,0 +1,14 @@
+{
+  "name": "vivero-maitenes",
+  "version": "1.0.0",
+  "description": "Landing page Vivero Los Maitenes — Itahue, Molina, Región del Maule",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "express": "^4.19.2"
+  },
+  "engines": {
+    "node": ">=18"
+  }
+}

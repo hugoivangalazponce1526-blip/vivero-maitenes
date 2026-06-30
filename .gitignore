@@ -1,0 +1,13 @@
+node_modules/
+
+# Variables de entorno — nunca al repositorio
+.env
+.env.local
+.env.*.local
+
+# macOS
+.DS_Store
+
+# Logs
+*.log
+npm-debug.log*
